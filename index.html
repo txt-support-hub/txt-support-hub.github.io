@@ -1,0 +1,6359 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<title>TXT Support Hub</title>
+<style>
+/* =========================================================
+   TXT SUPPORT HUB — DAY / NIGHT EDITORIAL REDESIGN
+   Content + links + IDs + interactions are preserved.
+   ========================================================= */
+
+:root {
+  --bg: #061316;
+  --bg-soft: #091b1d;
+   --surface: rgba(8, 27, 33, .82);
+  --surface-solid: #0b2229;
+  --surface-2: rgba(13, 36, 43, .76);
+  --surface-3: #10282f;
+  --border: rgba(164, 194, 199, .22);
+  --border-strong: rgba(184, 210, 213, .34);
+  --text: #f0f3ed;
+  --muted: #9aaca8;
+  --accent: #8eb6ac;
+  --accent-2: #b4cec6;
+  --accent-soft: rgba(142, 182, 172, .12);
+  --green: #78c59f;
+  --red: #ed807d;
+  --orange: #d7a36f;
+  --blue: #7daec5;
+  --pink: #e88b9e;
+  --gold: #e6bf62;
+  --shadow: rgba(0, 0, 0, .24);
+  --line: rgba(209, 229, 222, .09);
+}
+
+:root[data-theme="day"] {
+  --bg: #0a1813;
+  --bg-soft: #0d2118;
+  --surface: rgba(17, 42, 29, .78);
+  --surface-solid: #10271c;
+  --surface-2: rgba(26, 54, 38, .76);
+  --surface-3: #173525;
+  --border: rgba(164, 194, 162, .20);
+  --border-strong: rgba(190, 215, 191, .34);
+  --text: #f0f2e8;
+  --muted: #9eaea2;
+  --accent: #91b49b;
+  --accent-2: #bfd2c1;
+  --accent-soft: rgba(145, 180, 155, .12);
+  --green: #86c39e;
+  --red: #dc857c;
+  --orange: #d6a66f;
+  --blue: #87acbc;
+  --pink: #db8998;
+  --gold: #e2ba59;
+  --line: rgba(220, 234, 218, .10);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #061316;
+}
+
+:root[data-theme="day"] {
+  background: #0a1813;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  transition: background .35s ease, color .25s ease;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1133 / 2048;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4, 13, 18, .34),
+      rgba(4, 13, 18, .34)
+    ),
+    url("assets/site-bg-night.png") center top / 100% 100% no-repeat;
+
+  -webkit-mask-image:
+    linear-gradient(
+      180deg,
+      #000 0%,
+      #000 68%,
+      transparent 100%
+    );
+  mask-image:
+    linear-gradient(
+      180deg,
+      #000 0%,
+      #000 68%,
+      transparent 100%
+    );
+}
+
+:root[data-theme="day"] body {
+  background: var(--bg);
+}
+
+:root[data-theme="day"] body::before {
+  aspect-ratio: 932 / 1688;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 75, 45, .18) 0%,
+      rgba(26, 70, 42, .22) 48%,
+      rgba(17, 52, 32, .30) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 20, 15, .28) 0%,
+      rgba(5, 22, 16, .34) 48%,
+      rgba(4, 18, 12, .44) 100%
+    ),
+    url("assets/site-bg-day.png") center top / 100% 100% no-repeat;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+/* ---------------- NAV ---------------- */
+
+nav {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 40;
+  background: rgba(4, 12, 14, .92);
+  border-bottom: 1px solid rgba(220, 235, 231, .03);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.nav-inner {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: .9px;
+  white-space: nowrap;
+}
+
+.logo-star {
+  color: var(--accent-2);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.logo-text {
+  color: var(--text);
+}
+
+.logo-text span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 22px 0 20px;
+  color: rgba(239, 243, 238, .76);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .65px;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--text);
+}
+
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 13px;
+  height: 1px;
+  background: var(--accent-2);
+  box-shadow: 0 0 12px rgba(176, 205, 197, .25);
+}
+
+.theme-toggle {
+  flex: 0 0 auto;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: rgba(10, 28, 29, .64);
+  color: var(--text);
+  padding: 7px 11px;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .55px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 560px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  margin-top: 0;
+ background: transparent;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .18);
+}
+
+:root[data-theme="day"] .hero {
+  background: transparent;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .44;
+  background:
+    radial-gradient(circle at 73% 25%, rgba(220, 231, 226, .08), transparent 24%),
+    radial-gradient(circle at 85% 39%, rgba(64, 111, 120, .14), transparent 25%);
+  mix-blend-mode: screen;
+}
+
+:root[data-theme="day"] .hero::before {
+  opacity: .58;
+  background:
+    radial-gradient(circle at 72% 21%, rgba(245, 241, 219, .18), transparent 23%),
+    radial-gradient(circle at 48% 20%, rgba(170, 190, 164, .20), transparent 27%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: .58;
+  background: rgba(2, 11, 12, .42);
+}
+
+:root[data-theme="day"] .hero::after {
+  opacity: .78;
+  background: rgba(5, 19, 13, .30);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 58px;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--accent-2);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 760px;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: clamp(52px, 6vw, 86px);
+  line-height: .92;
+  font-weight: 400;
+  letter-spacing: -2px;
+}
+
+.hero-txt {
+  color: var(--accent-2);
+}
+
+.hero p {
+  max-width: 580px;
+  margin-top: 22px;
+  color: rgba(229, 238, 235, .76);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .65px;
+  transition: .2s ease;
+}
+
+.hero-btn.primary {
+  color: #10201b;
+  background: var(--accent-2);
+}
+
+.hero-btn.secondary {
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  background: rgba(10, 25, 26, .25);
+}
+
+.hero-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------------- GLOBAL SECTIONS ---------------- */
+
+.section {
+  padding: 46px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: .15px;
+}
+
+.section-subtitle {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.section-label {
+  margin: 10px 0 8px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .4px;
+}
+
+/* ---------------- TODAY'S PRIORITIES ---------------- */
+
+.priority-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.priority-card,
+.activity-card,
+.member-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .07);
+  transition: .22s ease;
+}
+
+.priority-card:hover,
+.member-card:hover,
+.activity-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.priority-card {
+  min-height: 145px;
+  padding: 18px 18px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.priority-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: var(--accent);
+}
+
+.priority-red::before { background: var(--red); }
+.priority-orange::before { background: var(--orange); }
+.priority-green::before { background: var(--green); }
+
+.priority-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.priority-red .priority-label { color: var(--red); }
+.priority-orange .priority-label { color: var(--orange); }
+.priority-green .priority-label { color: var(--green); }
+
+.priority-icon {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.priority-card h3 {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.priority-card p {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.priority-toggle {
+  cursor: pointer;
+}
+
+.priority-arrow,
+.priority-item-arrow,
+.activity-arrow,
+.guide-arrow,
+.resource-arrow,
+.achievement-arrow {
+  color: var(--accent-2);
+  transition: transform .2s ease, color .2s ease;
+}
+
+.priority-arrow {
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  font-size: 13px;
+}
+
+.activity-expandable.open .activity-arrow {
+  transform: rotate(90deg);
+}
+
+.priority-content {
+  display: none;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.priority-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+}
+
+.priority-item:last-child {
+  border-bottom: none;
+}
+
+.priority-item-toggle {
+  cursor: pointer;
+}
+
+.priority-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priority-item-content {
+  display: none;
+  margin-top: 9px;
+}
+
+.priority-vote {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--accent-soft);
+}
+
+.priority-vote strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.priority-vote span {
+  display: block;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.priority-vote-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.priority-vote-details {
+  display: none;
+  margin-top: 10px;
+}
+
+.priority-detail-label {
+  font-weight: 700;
+}
+
+/* ---------------- QUICK ACTIONS ---------------- */
+
+#priorities + .section {
+  padding-top: 10px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.quick-action {
+  min-height: 38px;
+  padding: 9px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: rgba(7, 24, 30, .62);
+  color: var(--text);
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .35px;
+  text-align: center;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.quick-action:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.quick-action-icon,
+.time-plan-icon,
+.time-plan-title-icon {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: var(--accent-2);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+.time-plan {
+  display: none;
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.time-plan-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 11px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.time-plan-list {
+  display: grid;
+  gap: 8px;
+}
+
+.time-plan-item {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.time-plan-item:last-child {
+  border-bottom: none;
+}
+
+/* ---------------- MEMBERS ---------------- */
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.member-card {
+  min-height: 126px;
+  padding: 15px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 14px;
+}
+
+.member-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 9px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid rgba(220, 235, 232, .34);
+  background: rgba(205, 222, 220, .07);
+  box-shadow:
+    0 0 14px rgba(220, 235, 232, .08),
+    inset 0 0 10px rgba(220, 235, 232, .04);
+}
+
+.member-icon .member-icon {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+.member-svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  background: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  color: var(--accent-2);
+}
+
+.member-txt,
+.member-yeonjun,
+.member-soobin,
+.member-beomgyu,
+.member-taehyun,
+.member-huening {
+  color: var(--accent-2);
+}
+
+.member-card h3 {
+  font-size: 10px;
+  letter-spacing: .2px;
+}
+
+.member-card p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 7px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+/* ---------------- CURRENT ACTIVITIES + SCHEDULE ---------------- */
+
+.activities-schedule-grid {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.activities-schedule-grid > .section {
+  min-width: 0;
+  padding: 36px 0;
+}
+
+/* Voting/filter controls */
+
+.voting-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.voting-tab {
+  padding: 8px 0 9px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  cursor: pointer;
+}
+
+.voting-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent-2);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 11px;
+}
+
+.filter-btn {
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 7px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--text);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* ---------------- ACTIVITY CARDS ---------------- */
+
+.activity-list {
+  display: grid;
+  gap: 8px;
+}
+#streaming {
+  scroll-margin-top: 40px;
+}
+.activity-card {
+  position: relative;
+  overflow: hidden;
+  padding: 13px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgba(220, 235, 232, .06),
+    0 10px 28px rgba(0, 0, 0, .08);
+  transition: .22s ease;
+}
+
+.activity-voting::before,
+.activity-charts::before,
+.activity-fanproject::before,
+.activity-streaming::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+
+.activity-voting::before {
+  background: var(--red);
+}
+
+.activity-charts::before {
+  background: var(--blue);
+}
+
+.activity-fanproject::before {
+  background: var(--pink);
+}
+
+.activity-streaming::before {
+  background: var(--green);
+}
+
+/* NIGHT — cool glass */
+
+:root[data-theme="night"] .activity-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 44, 53, .52),
+      rgba(6, 23, 30, .68)
+    );
+  border-color: rgba(174, 202, 208, .24);
+  box-shadow:
+    inset 0 1px 0 rgba(220, 235, 232, .07),
+    inset 0 0 24px rgba(160, 195, 205, .025),
+    0 10px 28px rgba(0, 0, 0, .10);
+}
+
+/* DAY — softer green glass */
+
+:root[data-theme="day"] .activity-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(78, 110, 91, .42),
+      rgba(15, 37, 26, .58)
+    );
+  border-color: rgba(190, 214, 194, .24);
+  box-shadow:
+    inset 0 1px 0 rgba(240, 246, 237, .08),
+    inset 0 0 24px rgba(190, 214, 194, .025),
+    0 10px 28px rgba(0, 0, 0, .08);
+}
+
+.activity-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.activity-expandable {
+  cursor: pointer;
+}
+
+.activity-main {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  gap: 11px;
+  align-items: center;
+}
+
+.activity-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-icon-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.activity-icon-svg .icon-accent {
+  fill: var(--accent);
+}
+
+.activity-icon-svg .icon-detail {
+  fill: var(--text);
+}
+
+.activity-voting .activity-icon-svg .icon-accent {
+  fill: var(--red);
+}
+
+.activity-charts .activity-icon-svg .icon-accent {
+  fill: var(--blue);
+}
+
+.activity-fanproject .activity-icon-svg .icon-accent {
+  fill: var(--pink);
+}
+
+.activity-streaming .activity-icon-svg .icon-accent {
+  fill: var(--green);
+}
+
+.activity-type {
+  margin-bottom: 2px;
+  color: var(--accent);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.activity-card h3 {
+  margin-bottom: 3px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.activity-card p {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.activity-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.activity-meta span,
+.status,
+.activity-platform,
+.activity-info span {
+  border-radius: 999px;
+}
+
+.activity-arrow {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  color: var(--text);
+  background: rgba(5, 19, 21, .18);
+  font-size: 11px;
+}
+
+.activity-details {
+  display: none;
+  margin-top: 12px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+
+.activity-details p {
+  font-size: 10px;
+}
+
+.activity-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 8px;
+}
+.activity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.activity-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.activity-btn-disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+.activity-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.activity-status-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.streaming-platforms,
+.streaming-campaign-list,
+.fanproject-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.streaming-platform,
+.streaming-campaign,
+.fanproject-item {
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(3, 14, 15, .16);
+}
+
+.streaming-platform-name,
+.streaming-section-title,
+.fanproject-section-title {
+  color: var(--text);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.streaming-platform-data,
+.streaming-campaign-meta,
+.fanproject-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.streaming-platform-data strong {
+  color: var(--text);
+}
+
+.streaming-progress {
+  margin-top: 11px;
+}
+
+.streaming-progress-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.streaming-progress-bar {
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
+}
+
+.streaming-progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--green);
+  border-radius: 999px;
+  transition: width .3s ease;
+}
+
+.chart-section {
+  margin-top: 11px;
+}
+
+.chart-section h4 {
+  margin-bottom: 6px;
+  font-size: 9px;
+}
+
+.chart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 8px;
+  margin-bottom: 4px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--accent-soft);
+}
+
+.chart-item div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chart-item strong { font-size: 8px; }
+.chart-item span { color: var(--muted); font-size: 7px; }
+.chart-item b { font-size: 9px; }
+
+.chart-table {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 78px 1fr 65px;
+  gap: 8px;
+  padding: 7px 8px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  font-size: 8px;
+}
+
+.chart-row:last-child {
+  border-bottom: none;
+}
+
+.chart-row > span:first-child {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.chart-row > strong {
+  text-align: right;
+}
+
+.chart-header {
+  background: var(--accent-soft);
+}
+
+.chart-updated {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+/* ---------------- SCHEDULE ---------------- */
+
+.calendar-layout {
+  display: grid;
+  gap: 8px;
+}
+
+.calendar {
+  overflow: hidden;
+  border: 1px solid rgba(174, 202, 208, .28);
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20, 44, 53, .48),
+      rgba(6, 23, 30, .64)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(225, 240, 237, .07),
+    0 10px 28px rgba(0, 0, 0, .10);
+}
+
+:root[data-theme="day"] .calendar {
+  background: rgba(14, 38, 25, .72);
+}
+
+.calendar-header {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 42px 1fr 42px;
+  align-items: center;
+  border-bottom: 1px solid rgba(209, 229, 222, .10);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(25, 52, 61, .46),
+      rgba(9, 28, 35, .56)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(225, 240, 237, .06);
+}
+
+:root[data-theme="day"] .calendar-header {
+  background: rgba(26, 52, 36, .72);
+}
+
+.calendar-nav {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.calendar-nav:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.calendar-month {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .7px;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.calendar-weekdays > div {
+  padding: 7px 4px;
+  border-right: 1px solid var(--line);
+  color: var(--muted);
+  text-align: center;
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.calendar-weekdays > div:last-child {
+  border-right: none;
+}
+
+.calendar-day {
+  position: relative;
+   min-height: 70px;
+  padding: 6px;
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  color: var(--text);
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.calendar-day:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-day.empty {
+  background: rgba(0,0,0,.05);
+}
+
+.calendar-date {
+  margin-bottom: 6px;
+}
+.calendar-events {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.calendar-range-bar {
+  display: block;
+  width: calc(100% + 2px);
+  min-height: 15px;
+  margin-left: -1px;
+  padding: 2px 5px;
+
+  border: 0;
+  border-radius: 0;
+
+  color: #f5f4ed;
+  text-align: left;
+  font: inherit;
+  font-size: 6px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.calendar-range-first {
+  border-radius: 5px 0 0 5px;
+}
+
+.calendar-range-last {
+  border-radius: 0 5px 5px 0;
+}
+
+.calendar-range-first.calendar-range-last {
+  border-radius: 5px;
+}
+
+.calendar-range-middle {
+  border-radius: 0;
+}
+.calendar-event {
+  display: block;
+  width: 100%;
+  padding: 4px 5px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  font-size: 6px;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.calendar-event:hover {
+  background: var(--accent-soft);
+}
+
+.calendar-event-voting { background: rgba(146, 84, 201, .62); }
+.calendar-event-streaming { background: rgba(69, 155, 112, .52); }
+.calendar-event-release { background: rgba(83, 136, 180, .52); }
+.calendar-event-fanproject { background: rgba(219, 141, 82, .58); }
+.calendar-event-award { background: rgba(218, 126, 191, .58); }
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(8, 22, 23, .48);
+}
+
+.calendar-legend-title {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.legend-dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+}
+
+.legend-voting { background: #b47bdd; }
+.legend-streaming { background: #74bd94; }
+.legend-release { background: #76aad1; }
+.legend-fanproject { background: #dda36f; }
+.legend-award { background: #d890b5; }
+
+.calendar-details {
+  display: none;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.calendar-details h4 {
+  margin-bottom: 6px;
+  font-size: 10px;
+}
+
+.calendar-details p {
+  color: var(--muted);
+  font-size: 9px;
+}
+.calendar-details-title {
+  margin-bottom: 7px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.calendar-details-description {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.calendar-details-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 10px;
+}
+
+.calendar-details-info span {
+  padding: 4px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--accent-soft);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .4px;
+}
+
+.calendar-details-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+/* ---------------- GUIDES / RESOURCES ---------------- */
+
+.guides-resources-row {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+#guides,
+#resources {
+  width: 100%;
+  padding: 34px 0;
+}
+
+#guides .container,
+#resources .container {
+  width: 100%;
+}
+
+#guides .section-title,
+#resources .section-title {
+  font-size: 15px;
+}
+
+#guides .section-subtitle,
+#resources .section-subtitle {
+  font-size: 9px;
+}
+
+.guides-grid,
+.resources-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.guide-card,
+.resource-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  transition: .2s ease;
+}
+
+.guide-card {
+  min-height: 54px;
+  padding: 9px 11px;
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  grid-template-areas:
+    "icon title arrow"
+    "icon description arrow";
+  column-gap: 7px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.guide-card:hover,
+.resource-card:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+  transform: translateY(-1px);
+}
+
+.guide-icon,
+.resource-icon {
+  grid-area: icon;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-icon-svg,
+.resource-icon-svg {
+  width: 17px;
+  height: 17px;
+  display: block;
+  flex: 0 0 17px;
+  fill: none;
+  stroke: #f5f4ed;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.guide-card h3,
+.resource-main h3 {
+  margin: 0 0 2px;
+  font-size: 9px;
+  line-height: 1.2;
+}
+
+.guide-card > p,
+.resource-main p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 7px;
+  line-height: 1.3;
+}
+
+.guide-arrow {
+  grid-area: arrow;
+}
+
+.guide-content {
+  display: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+}
+
+.resource-details {
+  display: none;
+  margin-top: 11px;
+  padding-top: 11px;
+  border-top: 1px solid var(--line);
+}
+
+.guide-content p {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.6;
+}
+.guide-source {
+  width: 100%;
+  min-width: 0;
+}
+
+.guide-source h4 {
+  margin: 0 0 5px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.guide-source > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.guide-note {
+  margin-top: 10px;
+}
+
+.guide-note p {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.guide-note p:first-child {
+  color: var(--text);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+.guide-socials {
+  margin-top: 10px;
+}
+
+.guide-socials-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.guide-socials-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.guide-socials-links a,
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: rgba(5, 16, 18, .20);
+  color: var(--text);
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.guide-category {
+  margin-top: 9px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--accent-soft);
+}
+
+.guide-category strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 8px;
+}
+
+.guide-category span {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.guide-platform-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.guide-platform-grid .guide-category {
+  margin-top: 0;
+}
+
+.resource-card {
+  min-height: 54px;
+  padding: 9px 11px;
+  cursor: pointer;
+}
+
+.resource-main {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: 7px;
+}
+
+.resource-main .resource-icon {
+  margin: 0;
+}
+
+.resource-arrow {
+  grid-column: 3;
+}
+
+.resource-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resource-links-compact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.resource-link {
+  text-decoration: none;
+}
+
+.resource-link:hover,
+.guide-socials-links a:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---------------- ACHIEVEMENTS ---------------- */
+
+#achievements {
+  padding-top: 34px;
+}
+
+.achievement-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 17px;
+}
+
+.achievement-link {
+  width: 100%;
+}
+
+.achievement-card {
+  position: relative;
+  min-height: 64px;
+  padding: 11px 14px;
+
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.achievement-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.achievement-icon {
+  grid-column: 1;
+  grid-row: 1 / 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  line-height: 1;
+}
+
+.achievement-icon-svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.achievement-card h3 {
+  grid-column: 2;
+  grid-row: 1;
+
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.achievement-card p {
+  grid-column: 2;
+  grid-row: 2;
+
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 7px;
+  line-height: 1.35;
+}
+
+.achievement-arrow {
+  grid-column: 3;
+  grid-row: 1 / 3;
+
+  position: static;
+  transform: none;
+
+  font-size: 11px;
+}
+
+.achievement-content {
+  display: none;
+}
+
+.awards-year {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.year-toggle {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--line);
+}
+
+.year-toggle h3 {
+  font-size: 9px;
+}
+
+.year-content {
+  display: none;
+  padding: 9px;
+}
+
+.award-card,
+.member-achievement-card,
+.record-card {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  padding: 9px;
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(7, 22, 23, .18);
+}
+
+.award-card:last-child,
+.member-achievement-card:last-child,
+.record-card:last-child {
+  margin-bottom: 0;
+}
+
+.award-icon {
+  font-size: 14px;
+}
+.award-icon-svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: var(--text);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.award-card h4,
+.member-achievement-card h4,
+.record-card h4 {
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.award-card p,
+.member-achievement-card p,
+.record-card p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 7.5px;
+  line-height: 1.4;
+}
+
+.award-result {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 8px;
+  font-weight: 800;
+}
+.award-result-svg {
+  width: 13px;
+  height: 13px;
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 3px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.member-achievements,
+.records-grid {
+  display: grid;
+  gap: 7px;
+}
+.member-achievement-content {
+  display: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.member-arrow {
+  color: var(--accent-2);
+  font-size: 11px;
+}
+.member-achievement-card {
+  grid-template-columns: 1fr auto;
+}
+.member-achievement-card h3 {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+  /* ---------------- NIGHT GLASS SYSTEM ---------------- */
+
+:root[data-theme="night"] .priority-card,
+:root[data-theme="night"] .member-card,
+:root[data-theme="night"] .guide-card,
+:root[data-theme="night"] .resource-card,
+:root[data-theme="night"] .achievement-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 25, 32, .60),
+      rgba(3, 16, 23, .76)
+    );
+
+  border-color: rgba(174, 202, 208, .22);
+
+  box-shadow:
+    inset 0 1px 0 rgba(225, 240, 237, .055),
+    0 10px 28px rgba(0, 0, 0, .12);
+}
+
+:root[data-theme="night"] .priority-card:hover,
+:root[data-theme="night"] .member-card:hover,
+:root[data-theme="night"] .guide-card:hover,
+:root[data-theme="night"] .resource-card:hover,
+:root[data-theme="night"] .achievement-card:hover {
+  border-color: rgba(190, 215, 220, .38);
+}
+/* NIGHT — glass time buttons */
+
+:root[data-theme="night"] .quick-action {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(24, 48, 58, .36),
+      rgba(6, 23, 30, .58)
+    );
+  border-color: rgba(174, 202, 208, .30);
+  box-shadow:
+    inset 0 1px 0 rgba(225, 240, 237, .06),
+    0 5px 16px rgba(0, 0, 0, .06);
+}
+
+:root[data-theme="night"] .quick-action:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(30, 56, 66, .44),
+      rgba(7, 25, 32, .64)
+    );
+  border-color: rgba(190, 215, 220, .38);
+}
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  margin-top: 20px;
+  padding: 26px 0 38px;
+  border-top: 1px solid var(--line);
+}
+
+footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-title {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+
+.footer-subtitle {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+/* ---------------- SMALL UTILITIES / EXISTING STATES ---------------- */
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 7px;
+  font-size: 7px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status.active {
+  color: var(--green);
+  background: rgba(120, 197, 159, .12);
+}
+
+.status.urgent {
+  color: var(--red);
+  background: rgba(237, 128, 125, .12);
+}
+
+.status.upcoming {
+  color: var(--orange);
+  background: rgba(215, 163, 111, .12);
+}
+
+.site-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-right: 5px;
+}
+
+.priority-icon-filled {
+  fill: currentColor;
+  stroke: none;
+}
+
+.priority-icon-circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.voting-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 11px;
+}
+
+.voting-card {
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: rgba(6, 21, 22, .26);
+}
+
+.voting-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.voting-card-header h4 {
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.voting-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.voting-card > p {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.voting-category {
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.voting-category:first-child {
+  padding-top: 0;
+  margin-top: 0;
+  border-top: 0;
+}
+
+.voting-category h5 {
+  margin-bottom: 3px;
+  font-size: 9px;
+}
+
+.voting-category p {
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.voting-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.voting-stat {
+  padding: 7px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+.voting-stat span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 6px;
+  font-weight: 700;
+}
+
+.voting-stat strong {
+  display: block;
+  font-size: 7px;
+}
+
+.voting-card-expandable {
+  cursor: pointer;
+}
+
+.voting-card-arrow {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1;
+  padding: 0 0 1px;
+}
+
+.voting-card-content {
+  display: none;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.voting-platforms,
+.voting-deadlines {
+  display: grid;
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.voting-platform,
+.voting-deadline {
+  padding: 7px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: rgba(5, 16, 18, .15);
+}
+
+.voting-platform {
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.voting-deadlines {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.voting-deadline span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 6px;
+  font-weight: 700;
+}
+
+.voting-deadline strong {
+  display: block;
+  font-size: 7px;
+}
+
+.voting-guide-note {
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.archive-card {
+  display: none;
+}
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 980px) {
+  .nav-links {
+    gap: 12px;
+  }
+
+  .member-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+
+  h1 {
+    font-size: clamp(48px, 8vw, 72px);
+  }
+}
+
+@media (max-width: 800px) {
+
+  nav {
+    position: relative;
+  }
+  .nav-inner {
+    min-height: 66px;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .nav-inner > .logo {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .nav-inner > .theme-toggle {
+    flex: 0 0 auto;
+  }
+
+
+    .nav-links {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-bottom: 7px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    padding: 8px 0 10px;
+  }
+
+  .nav-links a.active::after {
+    bottom: 2px;
+  }
+
+   .hero {
+    margin-top: 0;
+    min-height: 520px;
+  }
+
+  .hero .container {
+  padding-bottom: 42px;
+  width: min(90%, 1180px);
+}
+  .section {
+    padding: 36px 0;
+  }
+   .section-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+   .priority-card {
+  padding: 16px 16px 14px;
+}
+  .priority-grid,
+.guides-resources-row {
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+  .quick-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+  .member-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+ .activities-schedule-grid {
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+  .activities-schedule-grid > .section {
+    padding: 28px 0;
+  }
+
+  footer .container {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .container,
+  .guides-resources-row,
+  .activities-schedule-grid {
+    width: min(94%, 1180px);
+}
+  .hero {
+    min-height: 500px;
+  }
+h1 {
+  font-size: clamp(40px, 11vw, 48px);
+  letter-spacing: -1.5px;
+}
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .member-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .voting-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .voting-deadlines {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-links-compact,
+  .guide-platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ---------------- EXPERIMENT 02: COMPACT CARD REFINEMENT ---------------- */
+
+/* Resources: keep the whole row compact and prevent the icon from creating
+   an unintended grid area/implicit row. */
+.resource-card {
+  min-height: 48px;
+  padding: 8px 10px;
+}
+
+.resource-main {
+  min-width: 0;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.resource-main .resource-icon {
+  grid-area: auto;
+  width: 20px;
+  min-width: 20px;
+  font-size: 13px;
+  line-height: 1;
+  align-self: center;
+}
+
+.resource-main > div:nth-child(2) {
+  min-width: 0;
+}
+
+.resource-main h3 {
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.resource-main p {
+  font-size: 6.5px;
+  line-height: 1.3;
+}
+
+.resource-arrow {
+  font-size: 10px;
+  align-self: center;
+}
+
+/* Guides: a little tighter so both columns have the same visual rhythm. */
+.guide-card {
+  min-height: 46px;
+  padding: 7px 9px;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  column-gap: 7px;
+}
+
+.guide-icon {
+  font-size: 13px;
+}
+
+.guide-card h3 {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.guide-card > p {
+  font-size: 6.5px;
+  line-height: 1.3;
+}
+
+.guide-arrow {
+  font-size: 10px;
+}
+
+/* Expanded Current Activities: reduce accidental browser-default h4 sizing
+   and bring detail cards closer to the compact reference style. */
+.activity-details > p {
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.fanproject-item,
+.streaming-campaign {
+  padding: 8px;
+}
+
+.fanproject-item h4,
+.streaming-campaign-header h4 {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.fanproject-item-description {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.fanproject-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 9px;
+}
+
+.fanproject-info-item {
+  padding: 7px 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+.fanproject-info-item span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--muted);
+  font-size: 6px;
+  font-weight: 700;
+}
+
+.fanproject-info-item strong {
+  display: block;
+  font-size: 7px;
+  line-height: 1.3;
+}
+
+.streaming-guide {
+  margin-top: 9px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: rgba(3, 14, 15, .12);
+}
+
+.streaming-guide-title {
+  margin-bottom: 6px;
+  color: var(--text);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .6px;
+}
+
+.streaming-guide-steps {
+  display: grid;
+  gap: 5px;
+}
+
+.streaming-guide-step {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 6px;
+  align-items: start;
+}
+
+.streaming-guide-step > span {
+  color: var(--accent-2);
+  font-size: 6px;
+  font-weight: 800;
+}
+
+.streaming-guide-step p {
+  color: var(--muted);
+  font-size: 7px;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .fanproject-info {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="container nav-inner">
+<a class="logo" href="#">
+<span class="logo-star">✦</span>
+<span class="logo-text">TXT <span>SUPPORT HUB</span></span>
+</a>
+<div class="nav-links">
+<a class="active" href="#home">HOME</a>
+<a href="#voting">VOTING</a>
+<a href="#streaming">STREAMING</a>
+<a href="#schedule">SCHEDULE</a>
+<a href="#members">MEMBERS</a>
+<a href="#guides">GUIDES</a>
+<a href="#resources">RESOURCES</a>
+<a href="#achievements">ACHIEVEMENTS</a>
+</div>
+<button aria-label="Switch theme" aria-pressed="true" class="theme-toggle" id="themeToggle" type="button">☾ NIGHT</button></div>
+</nav>
+<main id="home">
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="eyebrow">
+                MOA SUPPORT HUB
+            </div>
+<h1>
+            Let's make every action count for <span class="hero-txt">TXT.</span>
+</h1>
+<p>
+                Voting, streaming, schedules, guides and current priorities —
+                everything in one place for MOA.
+            </p>
+<div class="hero-buttons">
+<a class="hero-btn primary" href="#voting">START SUPPORTING →</a>
+<a class="hero-btn secondary" href="#priorities">TODAY'S PRIORITIES ↓</a>
+</div>
+</div>
+</section>
+<!-- PRIORITIES -->
+<section class="section" id="priorities">
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-title">
+                        TODAY'S PRIORITIES
+                    </div>
+<div class="section-subtitle">
+                        What matters most right now
+                    </div>
+</div>
+</div>
+<div class="priority-grid">
+<div class="priority-card priority-red priority-toggle" onclick="togglePriority('urgentContent', 'urgentArrow')">
+<div class="priority-label">
+<svg aria-hidden="true" class="priority-icon" viewbox="0 0 24 24">
+<path d="M12 2.5L14.4 9.6L21.5 12L14.4 14.4L12 21.5L9.6 14.4L2.5 12L9.6 9.6L12 2.5Z"></path>
+</svg>
+    DO THIS FIRST
+</div>
+<h3>
+        What's most important right now
+    </h3>
+<p>
+        This spot is for the most urgent ways to support TXT and its members.
+        Check here first for current priorities and deadlines.
+    </p>
+<div class="priority-arrow" id="urgentArrow">
+        ▸
+    </div>
+<div class="priority-content" id="urgentContent">
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('urgentPresaveContent', 'urgentPresaveArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+<path d="M12 7v5l3 2"></path>
+</svg>
+                PRE-SAVE
+            </span>
+<span class="priority-item-arrow" id="urgentPresaveArrow">
+                ▸
+            </span>
+</div>
+<div class="priority-item-content" id="urgentPresaveContent">
+<div class="priority-vote">
+<strong>PERFECT STORM</strong>
+<span>TXT — 9th Mini Album</span>
+<span>Release: November 16, 2026</span>
+<span>Pre-save the album on Spotify</span>
+<a class="activity-btn" href="https://open.spotify.com/prerelease/44rCERevbz2R43ePnAggT7" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+                    PRE-SAVE →
+                </a>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('urgentVotingContent', 'urgentVotingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<rect height="16" rx="2" width="14" x="5" y="4"></rect>
+<path d="M8 9l1.5 1.5L12 8"></path>
+<path d="M8 14h6"></path>
+</svg>
+        VOTING
+    </span>
+<span class="priority-item-arrow" id="urgentVotingArrow">
+        ▸
+    </span>
+</div>
+<div class="priority-item-content" id="urgentVotingContent">
+<div class="priority-vote">
+<strong>BREAKTUDO AWARDS 2026</strong>
+<span>Stick With You — K-pop Hit of the Year</span>
+<span>TXT — International Male Group</span>
+<span>Voting ends: October 17, 2026</span>
+<div style="margin-top: 12px;">
+<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+                    STICK WITH YOU →
+                </a>
+<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/grupo-masculino-internacional/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+                    TXT →
+                </a>
+</div>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('urgentStreamingContent', 'urgentStreamingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M5 14v-3a7 7 0 0 1 14 0v3"></path>
+<path d="M5 14H3v3h2v-3z"></path>
+<path d="M19 14h2v3h-2v-3z"></path>
+<path d="M19 17c0 2-1.5 3-4 3"></path>
+</svg>
+        STREAMING
+    </span>
+<span class="priority-item-arrow" id="urgentStreamingArrow">
+        ▸
+    </span>
+</div>
+<div class="priority-item-content" id="urgentStreamingContent">
+<div class="priority-vote">
+<strong>STICK WITH YOU</strong>
+<span>TXT</span>
+<span>Continue supporting STICK WITH YOU</span>
+<span>Spotify · YouTube</span>
+<div style="margin-top: 12px;">
+<a class="activity-btn" href="https://open.spotify.com/artist/0ghlgldX5Dd6720Q3qFyQB" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+                    SPOTIFY →
+                </a>
+<a class="activity-btn" href="https://www.youtube.com/@TXT_bighit" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+                    YOUTUBE →
+                </a>
+</div>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('urgentProjectsContent', 'urgentProjectsArrow')">
+<div class="priority-item-header">
+
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M4 10h3l10-4v12L7 14H4z"></path>
+<path d="M7 14l1.5 5H12l-2-5"></path>
+<path d="M19 9.5c1 .7 1 4.3 0 5"></path>
+</svg>
+
+FAN PROJECTS
+</span>
+
+<span class="priority-item-arrow" id="urgentProjectsArrow">
+    ▸
+</span>
+
+</div>
+
+<div class="priority-item-content" id="urgentProjectsContent">
+<div class="priority-vote">
+<strong>NO ACTIVE FAN PROJECTS</strong>
+<span>TXT</span>
+<span>New fan projects will be added here when available.</span>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="priority-card priority-orange priority-toggle" onclick="togglePriority('timeContent', 'timeArrow')">
+<div class="priority-label">
+<svg aria-hidden="true" class="priority-icon priority-icon-filled" viewbox="0 0 24 24">
+<path d="M12 2.5L14.4 9.6L21.5 12L14.4 14.4L12 21.5L9.6 14.4L2.5 12L9.6 9.6L12 2.5Z"></path>
+</svg>
+    IF YOU HAVE TIME
+</div>
+<h3>
+        More ways to support
+    </h3>
+<p>
+        Important tasks that can wait a little.
+        Check here after the most urgent priorities.
+    </p>
+<div class="priority-arrow" id="timeArrow">
+        ▸
+    </div>
+<div class="priority-content" id="timeContent">
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('timeVotingContent', 'timeVotingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<rect height="16" rx="2" width="14" x="5" y="4"></rect>
+<path d="M8 9l1.5 1.5L12 8"></path>
+<path d="M8 14h6"></path>
+</svg>
+    VOTING
+</span>
+<span class="priority-item-arrow" id="timeVotingArrow">
+            ▸
+        </span>
+</div>
+<div class="priority-item-content" id="timeVotingContent">
+<div class="priority-vote">
+<strong>SOOBIN'S BIRTHDAY VOTING</strong>
+<span>Multiple platforms</span>
+<span><strong class="priority-detail-label">Target:</strong> 9K Diamonds</span>
+<span><strong class="priority-detail-label">Ends:</strong> November 6, 2026</span>
+<a class="activity-btn" href="#voting" onclick="event.stopPropagation();">
+        VIEW VOTING →
+    </a>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('timeStreamingContent', 'timeStreamingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M5 14v-3a7 7 0 0 1 14 0v3"></path>
+<path d="M5 14H3v3h2v-3z"></path>
+<path d="M19 14h2v3h-2v-3z"></path>
+<path d="M19 17c0 2-1.5 3-4 3"></path>
+</svg>
+            STREAMING
+        </span>
+<span class="priority-item-arrow" id="timeStreamingArrow">
+            ▸
+        </span>
+</div>
+<div class="priority-item-content" id="timeStreamingContent">
+<div class="priority-vote">
+<strong>Additional Streaming</strong>
+<span>TXT</span>
+<span>Support current streaming goals</span>
+<span>Spotify · YouTube</span>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('timeProjectsContent', 'timeProjectsArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M4 10h3l10-4v12L7 14H4z"></path>
+<path d="M7 14l1.5 5H12l-2-5"></path>
+<path d="M19 9.5c1 .7 1 4.3 0 5"></path>
+</svg>
+            FAN PROJECTS
+        </span>
+<span class="priority-item-arrow" id="timeProjectsArrow">
+            ▸
+        </span>
+</div>
+<div class="priority-item-content" id="timeProjectsContent">
+<div class="priority-vote">
+<strong>NO ACTIVE FAN PROJECTS</strong>
+<span>TXT</span>
+<span>New fan projects will be added here when available.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="priority-card priority-green priority-toggle" onclick="togglePriority('optionalContent', 'optionalArrow')">
+<div class="priority-label">
+<svg aria-hidden="true" class="priority-icon priority-icon-circle" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+</svg>
+    OPTIONAL
+</div>
+<h3>
+        Extra support
+    </h3>
+<p>
+        Helpful things to do when you have time to spare.
+    </p>
+<div class="priority-arrow" id="optionalArrow">
+    ▸
+</div>
+<div class="priority-content" id="optionalContent">
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('optionalVotingContent', 'optionalVotingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<rect height="16" rx="2" width="14" x="5" y="4"></rect>
+<path d="M8 9l1.5 1.5L12 8"></path>
+<path d="M8 14h6"></path>
+</svg>
+        VOTING
+    </span>
+<span class="priority-item-arrow" id="optionalVotingArrow">
+        ▸
+    </span>
+</div>
+<div class="priority-item-content" id="optionalVotingContent">
+<div class="priority-vote">
+<strong>NO ADDITIONAL VOTING ACTIVITIES</strong>
+<span>New voting opportunities will be added here when available.</span>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('optionalStreamingContent', 'optionalStreamingArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M5 14v-3a7 7 0 0 1 14 0v3"></path>
+<path d="M5 14H3v3h2v-3z"></path>
+<path d="M19 14h2v3h-2v-3z"></path>
+<path d="M19 17c0 2-1.5 3-4 3"></path>
+</svg>
+        STREAMING
+    </span>
+<span class="priority-item-arrow" id="optionalStreamingArrow">
+        ▸
+    </span>
+</div>
+<div class="priority-item-content" id="optionalStreamingContent">
+<div class="priority-vote">
+<strong>NO ADDITIONAL STREAMING ACTIVITIES</strong>
+<span>New streaming opportunities will be added here when available.</span>
+</div>
+</div>
+</div>
+<div class="priority-item priority-item-toggle" onclick="event.stopPropagation(); togglePriorityItem('optionalProjectsContent', 'optionalProjectsArrow')">
+<div class="priority-item-header">
+<span>
+<svg aria-hidden="true" class="site-icon" viewbox="0 0 24 24">
+<path d="M4 10h3l10-4v12L7 14H4z"></path>
+<path d="M7 14l1.5 5H12l-2-5"></path>
+<path d="M19 9.5c1 .7 1 4.3 0 5"></path>
+</svg>
+        FAN PROJECTS
+    </span>
+<span class="priority-item-arrow" id="optionalProjectsArrow">
+        ▸
+    </span>
+</div>
+<div class="priority-item-content" id="optionalProjectsContent">
+<div class="priority-vote">
+<strong>NO ACTIVE FAN PROJECTS</strong>
+<span>TXT</span>
+<span>New fan projects will be added here when available.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- QUICK ACTIONS -->
+<section class="section">
+<div class="container">
+<div class="section-title">
+                HOW MUCH TIME DO YOU HAVE?
+            </div>
+<div class="section-subtitle" style="margin-bottom:20px;">
+                Pick something you can actually do right now.
+            </div>
+<div class="quick-actions">
+<button class="quick-action" onclick="showTimePlan('5')">
+<svg aria-hidden="true" class="quick-action-icon" viewBox="0 0 24 24">
+<path d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11"></path>
+</svg>
+<span>5 MIN</span>
+</button>
+<button class="quick-action" onclick="showTimePlan('10')">
+<svg aria-hidden="true" class="quick-action-icon" viewBox="0 0 24 24">
+<path d="M6.657 18c-2.572 0 -4.657 -2.007 -4.657 -4.483c0 -2.475 2.085 -4.482 4.657 -4.482c.393 -1.762 1.794 -3.2 3.675 -3.773c1.88 -.572 3.956 -.193 5.444 1c1.488 1.19 2.162 3.007 1.77 4.769h.99c1.913 0 3.464 1.56 3.464 3.486c0 1.927 -1.551 3.487 -3.465 3.487h-11.878"></path>
+</svg>
+<span>10 MIN</span>
+</button>
+<button class="quick-action" onclick="showTimePlan('30')">
+<svg aria-hidden="true" class="quick-action-icon" viewBox="0 0 24 24">
+<path d="M14 6a9.3 9.3 0 0 0 1.516 -.546c.911 -.438 1.494 -1.015 1.937 -1.932c.207 -.428 .382 -.928 .547 -1.522c.165 .595 .34 1.095 .547 1.521c.443 .918 1.026 1.495 1.937 1.933c.426 .205 .925 .38 1.516 .546a9.3 9.3 0 0 0 -1.516 .547c-.911 .438 -1.494 1.015 -1.937 1.932a9 9 0 0 0 -.547 1.521c-.165 -.594 -.34 -1.095 -.547 -1.521c-.443 -.918 -1.026 -1.494 -1.937 -1.932a9 9 0 0 0 -1.516 -.547"></path>
+<path d="M3 14a21 21 0 0 0 1.652 -.532c2.542 -.953 3.853 -2.238 4.816 -4.806a20 20 0 0 0 .532 -1.662a20 20 0 0 0 .532 1.662c.963 2.567 2.275 3.853 4.816 4.806q .75 .28 1.652 .532a21 21 0 0 0 -1.652 .532c-2.542 .953 -3.854 2.238 -4.816 4.806a20 20 0 0 0 -.532 1.662a20 20 0 0 0 -.532 -1.662c-.963 -2.568 -2.275 -3.853 -4.816 -4.806a21 21 0 0 0 -1.652 -.532"></path>
+</svg>
+<span>30 MIN</span>
+</button>
+<button class="quick-action" onclick="showTimePlan('60')">
+<svg aria-hidden="true" class="quick-action-icon" viewBox="0 0 24 24">
+<path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546"></path>
+</svg>
+<span>1 HOUR+</span>
+</button>
+</div>
+<div class="time-plan" id="timePlan">
+<div class="time-plan-title">
+<svg aria-hidden="true" class="time-plan-title-icon" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="8"></circle>
+<path d="M12 7v5l3 2"></path>
+</svg>
+    5 MIN — QUICK SUPPORT
+</div>&gt;
+
+    <div class="time-plan-list">
+<div class="time-plan-item">
+            ☄️ [Конкретное срочное голосование]
+        </div>
+<div class="time-plan-item">
+            ☄️ [Короткая стриминговая задача / предложенный плейлист]
+        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- MEMBERS -->
+<section class="section" id="members">
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-title">
+                        TXT / MEMBERS
+                    </div>
+<div class="section-subtitle">
+                        Check current priorities for the group or each member.
+                    </div>
+</div>
+</div>
+<div class="member-grid">
+<div class="member-card" onclick="filterActivities('TXT')">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-txt" style="
+            -webkit-mask-image: url('assets/star.svg');
+            mask-image: url('assets/star.svg');
+        "></span>
+</div>
+<h3>TXT</h3>
+<p>GROUP</p>
+</div>
+<div class="member-card" onclick="selectActivityFilter('Yeonjun')">
+<div class="member-icon">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-yeonjun" style="
+            -webkit-mask-image: url('assets/fox.svg');
+            mask-image: url('assets/fox.svg');
+        "></span>
+</div>
+</div>
+<h3>YEONJUN</h3>
+<p>MEMBER</p>
+</div>
+<div class="member-card" onclick="selectActivityFilter('Soobin')">
+<div class="member-icon">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-soobin" style="
+            -webkit-mask-image: url('assets/rabbit.svg');
+            mask-image: url('assets/rabbit.svg');
+        "></span>
+</div>
+</div>
+<h3>SOOBIN</h3>
+<p>MEMBER</p>
+</div>
+<div class="member-card" onclick="selectActivityFilter('Beomgyu')">
+<div class="member-icon">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-beomgyu" style="
+            -webkit-mask-image: url('assets/bear.svg');
+            mask-image: url('assets/bear.svg');
+        "></span>
+</div>
+</div>
+<h3>BEOMGYU</h3>
+<p>MEMBER</p>
+</div>
+<div class="member-card" onclick="selectActivityFilter('Taehyun')">
+<div class="member-icon">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-taehyun" style="
+            -webkit-mask-image: url('assets/cat.svg');
+            mask-image: url('assets/cat.svg');
+        "></span>
+</div>
+</div>
+<h3>TAEHYUN</h3>
+<p>MEMBER</p>
+</div>
+<div class="member-card" onclick="selectActivityFilter('Huening Kai')">
+<div class="member-icon">
+<div class="member-icon">
+<span aria-hidden="true" class="member-svg member-huening" style="
+            -webkit-mask-image: url('assets/penguin.svg');
+            mask-image: url('assets/penguin.svg');
+        "></span>
+</div>
+</div>
+<h3>HUENING KAI</h3>
+<p>MEMBER</p>
+</div>
+</div>
+</div>
+</section>
+<!-- VOTING -->
+<div class="activities-schedule-grid"><section class="section" id="voting">
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-title">
+                        CURRENT ACTIVITIES
+                    </div>
+<div class="section-subtitle">
+    What MOA can do right now — voting, streaming, goals and fan projects.
+</div>
+</div>
+</div>
+<div class="voting-tabs">
+<button class="voting-tab active" onclick="showVotingTab('current', this)" type="button">
+        CURRENT
+    </button>
+<button class="voting-tab" onclick="showVotingTab('archive', this)" type="button">
+        ARCHIVE
+    </button>
+</div>
+<div class="filters">
+<button class="filter-btn active" onclick="filterActivities('ALL', this)">
+        ALL
+    </button>
+<button class="filter-btn" onclick="filterActivities('TXT', this)">
+        TXT
+    </button>
+<button class="filter-btn" onclick="filterActivities('MEMBERS', this)">
+        MEMBERS
+    </button>
+</div>
+<div class="activity-list" id="activityList">
+<div class="activity-card activity-expandable archive-card" data-target="TXT" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-type">
+            VOTING
+        </div>
+<div>
+<h3>
+                JMA — Male Group of the Year
+            </h3>
+<div class="activity-meta">
+<span>TXT · JMA</span>
+<span>🟢 FINAL ROUND</span>
+<span>⏰ SEP 16</span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+<p>
+        Vote for TOMORROW X TOGETHER in the Jupiter Music Awards.
+    </p>
+<div class="activity-info">
+<span>PLATFORM: JMA</span>
+<span class="activity-info-divider">|</span>
+<span>DEADLINE: SEP 16</span>
+</div>
+<div class="activity-actions">
+<span class="activity-btn activity-btn-disabled">
+        VOTING CLOSED
+    </span>
+</div>
+</div>
+</div>
+<div class="activity-card activity-expandable archive-card" data-target="Yeonjun" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-type">
+            VOTING
+        </div>
+<div>
+<h3>
+                JMA — Male Artist of the Year
+            </h3>
+<div class="activity-meta">
+<span>YEONJUN · JMA</span>
+<span>🟢 FINAL ROUND</span>
+<span>⏰ SEP 16</span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+<p>
+            Vote for YEONJUN in the Jupiter Music Awards.
+        </p>
+<div class="activity-info">
+<span>PLATFORM: JMA</span>
+<span class="activity-info-divider">|</span>
+<span>DEADLINE: SEP 16</span>
+</div>
+<div class="activity-actions">
+<span class="activity-btn activity-btn-disabled">
+        VOTING CLOSED
+    </span>
+</div>
+</div>
+</div>
+</div>
+   <div class="activity-card activity-expandable activity-fanproject archive-card" data-target="TXT" onclick="toggleActivity(this)">
+    <div class="activity-main">
+
+        <div class="activity-type">
+    PROJECT CLOSED
+</div>
+
+        <div>
+            <h3>
+                HORNS VS HALOS
+            </h3>
+
+            <div class="activity-meta">
+                <span>TXT · STREAMING EVENT</span>
+                <span>ENDED</span>
+                <span>SEP 24 – SEP 30</span>
+            </div>
+        </div>
+
+        <div class="activity-arrow">
+            ▸
+        </div>
+
+    </div>
+
+    <div class="activity-details">
+
+        <p>
+            A fan-organized streaming event where MOAs compete in teams and earn points through streaming, recruiting participants and sharing proof.
+        </p>
+
+        <div class="activity-info">
+            <span>EVENT: SEP 24 – SEP 30</span>
+            <span>STATUS: ENDED</span>
+            <span>ORGANIZED BY: FANBASES</span>
+        </div>
+
+        <div class="activity-actions">
+
+            <a
+                class="activity-btn"
+                href="https://t.co/BcOwelmYWE"
+                onclick="event.stopPropagation();"
+                rel="noopener noreferrer"
+                target="_blank"
+            >
+                EVENT →
+            </a>
+
+            <a
+                class="activity-btn activity-btn-secondary"
+                href="https://yeondreamfm.carrd.co/#/playlist"
+                onclick="event.stopPropagation();"
+                rel="noopener noreferrer"
+                target="_blank"
+            >
+                RULES & PLAYLIST →
+            </a>
+
+        </div>
+
+    </div>
+</div>
+<div class="activity-card activity-expandable activity-voting" data-target="TXT" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-icon activity-icon-voting">
+<svg aria-hidden="true" class="activity-icon-svg" viewbox="0 0 24 24">
+<rect class="icon-accent" height="20" rx="2" width="20" x="2" y="2"></rect>
+<path class="icon-detail" d="M16,11a1,1,0,0,1-.71-.29l-1-1a1,1,0,0,1,1.42-1.42l.29.3,1.29-1.3a1,1,0,1,1,1.42,1.42l-2,2A1,1,0,0,1,16,11Zm.71,5.71,2-2a1,1,0,0,0-1.42-1.42L16,14.59l-.29-.3a1,1,0,0,0-1.42,1.42l1,1a1,1,0,0,0,1.42,0ZM6,16h5a1,1,0,0,0,0-2H6a1,1,0,0,0,0,2Zm0-6h5a1,1,0,0,0,0-2H6a1,1,0,0,0,0,2Z"></path>
+</svg>
+</div>
+<div>
+<h3>
+                CURRENT VOTING
+            </h3>
+<div class="activity-meta">
+<span>TXT · ACTIVE VOTES</span>
+<span class="activity-status">
+<span class="activity-status-dot"></span>
+    CURRENT
+</span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+<p>
+            Active voting campaigns and their current status, targets and deadlines.
+        </p>
+<div class="voting-list">
+<!-- SOOBIN'S BIRTHDAY -->
+<div class="voting-card voting-card-expandable" data-target="SOOBIN" onclick="event.stopPropagation(); toggleVotingEvent(this)">
+<div class="voting-card-header">
+<div>
+<h4>SOOBIN'S BIRTHDAY VOTING</h4>
+<div class="voting-card-meta">
+<span>SOOBIN · BIRTHDAY SUPPORT</span>
+<span class="activity-status">
+<span class="activity-status-dot"></span>
+                        ACTIVE
+                    </span>
+</div>
+</div>
+<div class="voting-card-arrow">
+                ▸
+            </div>
+</div>
+<div class="voting-card-content">
+<p>
+                Current voting and collection information for Soobin's birthday support.
+            </p>
+<div class="voting-section-label">
+                PLATFORMS
+            </div>
+<div class="voting-platforms">
+<div class="voting-platform">
+                    CHOEAEDOL
+                </div>
+<div class="voting-platform">
+                    IDOKI
+                </div>
+<div class="voting-platform">
+                    HIGHER
+                </div>
+<div class="voting-platform">
+                    CHOEAEDOL — MIRACLE
+                </div>
+<div class="voting-platform">
+                    BICG
+                </div>
+<div class="voting-platform">
+                    KDOL
+                </div>
+<div class="voting-platform">
+                    UPICK
+                </div>
+<div class="voting-platform">
+                    MUBEAT
+                </div>
+<div class="voting-platform">
+                    IDOLCHAMP
+                </div>
+</div>
+<div class="voting-section-label">
+                DEADLINES
+            </div>
+<div class="voting-deadlines">
+<div class="voting-deadline">
+<span>CHOEAEDOL</span>
+<strong>NOV 6 · 23:59 KST</strong>
+</div>
+<div class="voting-deadline">
+<span>IDOKI</span>
+<strong>OCT 20</strong>
+</div>
+<div class="voting-deadline">
+<span>HIGHER</span>
+<strong>OCT 31</strong>
+</div>
+<div class="voting-deadline">
+<span>CHOEAEDOL — MIRACLE</span>
+<strong>OCT 31</strong>
+</div>
+<div class="voting-deadline">
+<span>BICG</span>
+<strong>BEGINNING OF OCTOBER</strong>
+</div>
+<div class="voting-deadline">
+<span>KDOL</span>
+<strong>OCT 20 — NOV 16</strong>
+</div>
+<div class="voting-deadline">
+<span>UPICK</span>
+<strong>3RD WEEK OF OCTOBER</strong>
+</div>
+<div class="voting-deadline">
+<span>MUBEAT</span>
+<strong>BEGINNING OF NOVEMBER</strong>
+</div>
+<div class="voting-deadline">
+<span>IDOLCHAMP</span>
+<strong>BEGINNING OF NOVEMBER</strong>
+</div>
+</div>
+<div class="voting-guide-note">
+                Detailed voting instructions are available in the linked guides below.
+            </div>
+<div class="activity-actions">
+<a class="activity-btn activity-btn-secondary" href="#guides" onclick="event.stopPropagation();">
+                    GUIDE ↓
+                </a>
+</div>
+</div>
+</div>
+<!-- BREAKTUDO AWARDS -->
+<div class="voting-card voting-card-expandable" data-target="TXT" onclick="event.stopPropagation(); toggleVotingEvent(this)">
+<div class="voting-card-header">
+<div>
+<h4>BREAKTUDO AWARDS 2026</h4>
+<div class="voting-card-meta">
+<span>TXT · 2 CATEGORIES</span>
+<span class="activity-status">
+<span class="activity-status-dot"></span>
+                        ACTIVE
+                    </span>
+<span>OCT 17</span>
+</div>
+</div>
+<div class="voting-card-arrow">
+                ▸
+            </div>
+</div>
+<div class="voting-card-content">
+<div class="voting-category">
+<h5>K-POP HIT OF THE YEAR</h5>
+<p>
+                    Stick With You — TXT
+                </p>
+<div class="voting-stats">
+<div class="voting-stat">
+<span>CURRENT</span>
+<strong>Not publicly shown</strong>
+</div>
+<div class="voting-stat">
+<span>TARGET</span>
+<strong>Top spot</strong>
+</div>
+<div class="voting-stat">
+<span>DEADLINE</span>
+<strong>OCT 17, 2026</strong>
+</div>
+</div>
+</div>
+<div class="voting-category">
+<h5>INTERNATIONAL MALE GROUP</h5>
+<p>
+                    TXT
+                </p>
+<div class="voting-stats">
+<div class="voting-stat">
+<span>CURRENT</span>
+<strong>Not publicly shown</strong>
+</div>
+<div class="voting-stat">
+<span>TARGET</span>
+<strong>Top spot</strong>
+</div>
+<div class="voting-stat">
+<span>DEADLINE</span>
+<strong>OCT 17, 2026</strong>
+</div>
+</div>
+</div>
+<div class="activity-actions">
+<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+    STICK WITH YOU →
+</a>
+
+<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/grupo-masculino-internacional/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
+    TXT →
+</a>
+
+<a class="activity-btn activity-btn-secondary" href="#guides" onclick="event.stopPropagation();">
+    GUIDE ↓
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="activity-card activity-expandable activity-charts" data-target="TXT" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-icon activity-icon-charts">
+<svg aria-hidden="true" class="activity-icon-svg" viewbox="0 0 24 24">
+<path class="icon-accent" d="M4.75187055 11.9995602C6.27168669 11.9995602 7.5037411 13.2316146 7.5037411 14.7514308V19.2499651C7.5037411 20.7697812 6.27168669 22.0018356 4.75187055 22.0018356C3.23205441 22.0018356 2 20.7697812 2 19.2499651V14.7514308C2 13.2316146 3.23205441 11.9995602 4.75187055 11.9995602ZM11.7518706 1.99956021C13.2716867 1.99956021 14.5037411 3.23161462 14.5037411 4.75143076V19.2499651C14.5037411 20.7697812 13.2716867 22.0018356 11.7518706 22.0018356C10.2320544 22.0018356 9 20.7697812 9 19.2499651V4.75143076C9 3.23161462 10.2320544 1.99956021 11.7518706 1.99956021ZM18.7518706 6.99956021C20.2716867 6.99956021 21.5037411 8.23161462 21.5037411 9.75143076V19.2499651C21.5037411 20.7697812 20.2716867 22.0018356 18.7518706 22.0018356C17.2320544 22.0018356 16 20.7697812 16 19.2499651V9.75143076C16 8.23161462 17.2320544 6.99956021 18.7518706 6.99956021Z"></path>
+</svg>
+</div>
+<div>
+<h3>
+                TXT — Current Charts &amp; Goals
+            </h3>
+<div class="activity-meta">
+<span>TXT · STICK WITH YOU</span>
+<span class="activity-status">
+<span class="activity-status-dot"></span>
+    ACTIVE ERA
+</span>
+<span>TRACKING</span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+
+<p>
+    Chart results and active goals will be added and updated during the comeback.
+</p>
+
+<div class="chart-section">
+
+<h4>CHART TRACKING</h4>
+
+<div class="chart-item">
+    <div>
+        <strong>UPCOMING COMEBACK</strong>
+        <span>Tracking will be added once chart goals and official results are available.</span>
+    </div>
+</div>
+
+</div>
+
+<div class="chart-section">
+
+<h4>CURRENTLY</h4>
+
+<div class="chart-item">
+    <div>
+        <strong>NO ACTIVE CHART TARGETS</strong>
+        <span>There are no current chart targets listed.</span>
+    </div>
+</div>
+
+</div>
+
+<div class="activity-actions">
+
+<a
+    class="activity-btn"
+    href="https://www.txtcharts.com/"
+    onclick="event.stopPropagation();"
+    rel="noopener noreferrer"
+    target="_blank"
+>
+    CHART DATA →
+</a>
+
+</div>
+
+</div>
+</div>
+<div class="activity-card activity-expandable activity-fanproject" data-target="TXT" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-icon activity-icon-fanproject">
+<svg aria-hidden="true" class="activity-icon-svg" viewbox="0 0 24 24">
+<path class="icon-accent" d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"></path>
+</svg>
+</div>
+<div>
+<h3>
+                FAN PROJECTS
+            </h3>
+<div class="activity-meta">
+<span>TXT · COMMUNITY PROJECTS</span>
+<span>NO ACTIVE PROJECTS</span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+<p>
+            Current fan projects, community events and ways to support TXT.
+        </p>
+<div class="fanproject-section-title">
+            ACTIVE PROJECTS
+        </div>
+<div class="fanproject-list">
+<div class="fanproject-item">
+<p class="fanproject-item-description">
+                    No active fan projects are currently listed.
+                </p>
+</div>
+</div>
+</div>
+</div>
+<div class="activity-card activity-expandable activity-streaming" data-target="TXT" id="streaming" onclick="toggleActivity(this)">
+<div class="activity-main">
+<div class="activity-icon activity-icon-streaming">
+<svg aria-hidden="true" class="activity-icon-svg" viewbox="0 0 24 24">
+<path class="icon-accent" d="M2 12.124C2 6.53269 6.47713 2 11.9999 2C17.5228 2 21.9999 6.53269 21.9999 12.124V17.3675C22.0002 18.1844 22.0004 18.7446 21.8568 19.2364C21.576 20.1982 20.9046 20.9937 20.01 21.4245C19.5525 21.6449 19.0059 21.732 18.2088 21.8591C17.7954 21.9252 17.5532 21.9639 17.3522 21.9839C17.1431 22.0047 16.9299 22.0111 16.7118 21.9676C15.9942 21.8245 15.4024 21.3126 15.1508 20.6172C15.0744 20.4059 15.0474 20.1916 15.035 19.9793C15.0232 19.7753 15.0232 19.527 15.0232 19.2365V15.0641C15.0226 14.6386 15.0222 14.2725 15.1195 13.959C15.3422 13.2416 15.9238 12.6975 16.6477 12.5292C16.9641 12.4556 17.3246 12.4849 17.7435 12.5189L17.8367 12.5264L17.9465 12.5352C18.7302 12.5975 19.2664 12.6402 19.7216 12.8106C20.0415 12.9304 20.3381 13.0953 20.6046 13.2976V12.124C20.6046 7.31288 16.7521 3.41266 11.9999 3.41266C7.24776 3.41266 3.39534 7.31288 3.39534 12.124V13.2976C3.66176 13.0953 3.95843 12.9304 4.27829 12.8106C4.73345 12.6402 5.26965 12.5975 6.05335 12.5352L6.16318 12.5264L6.25641 12.5189C6.67534 12.4849 7.03581 12.4556 7.35224 12.5292C8.07612 12.6975 8.65766 13.2416 8.88039 13.959C8.97774 14.2725 8.9773 14.6386 8.97678 15.0641L8.97671 19.2365C8.97671 19.527 8.97672 19.7753 8.96487 19.9793C8.95254 20.1916 8.9255 20.4059 8.84906 20.6172C8.59754 21.3126 8.00574 21.8245 7.28812 21.9676C7.07001 22.0111 6.85675 22.0047 6.64768 21.9839C6.44671 21.9639 6.20449 21.9252 5.92102 21.8799L5.79106 21.8591C4.99399 21.732 4.44737 21.6449 3.98991 21.4245C3.09534 20.9937 2.42388 20.1982 2.14308 19.2364C2.02467 18.8309 2.00404 18.3788 2.0006 17.7747L2 17.5803V12.124Z"></path>
+</svg>
+</div>
+<div>
+<h3>
+                STREAMING
+            </h3>
+<div class="activity-meta">
+<span>TXT · STREAMING CAMPAIGNS</span>
+<span class="activity-status">
+<span class="activity-status-dot"></span>
+                    ACTIVE
+                </span>
+</div>
+</div>
+<div class="activity-arrow">
+            ▸
+        </div>
+</div>
+<div class="activity-details">
+<p>
+            Current streaming campaigns, platform goals and active streaming support.
+        </p>
+<div class="streaming-section-title">
+            ACTIVE CAMPAIGNS
+        </div>
+<div class="streaming-campaign-list">
+<div class="streaming-campaign">
+
+    <div class="streaming-campaign-header">
+        <div>
+            <h4>SPOTIFY STREAMING CALL</h4>
+
+            <div class="streaming-campaign-meta">
+                <span>TXT INTERNATIONAL · SPOTIFY</span>
+                <span>ACTIVE</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="streaming-guide">
+
+        <div class="streaming-guide-title">
+            TXT TOP SONGS &amp; UPCOMING MILESTONES
+        </div>
+
+        <p>
+            Use the prepared playlists to support TXT on Spotify and help the songs reach their upcoming milestones.
+        </p>
+
+    </div>
+
+    <div class="activity-actions">
+
+        <a
+            class="activity-btn"
+            href="https://t.co/Gc5gay90Gq"
+            onclick="event.stopPropagation();"
+            rel="noopener noreferrer"
+            target="_blank"
+        >
+            NEW PLAYLIST 1 →
+        </a>
+
+        <a
+            class="activity-btn"
+            href="https://t.co/omoUK4Jtey"
+            onclick="event.stopPropagation();"
+            rel="noopener noreferrer"
+            target="_blank"
+        >
+            NEW PLAYLIST 2 →
+        </a>
+
+        <a
+            class="activity-btn activity-btn-secondary"
+            href="https://t.co/6uFrtKBmVg"
+            onclick="event.stopPropagation();"
+            rel="noopener noreferrer"
+            target="_blank"
+        >
+            SHORT PLAYLIST →
+        </a>
+
+        <a
+            class="activity-btn activity-btn-secondary"
+            href="https://t.co/PPQ5VLLdNJ"
+            onclick="event.stopPropagation();"
+            rel="noopener noreferrer"
+            target="_blank"
+        >
+            JOIN STATIONHEAD →
+        </a>
+
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section><section class="section" id="schedule">
+<div class="container">
+<div class="section-title">
+            SCHEDULE
+        </div>
+<div class="section-subtitle">
+            Important dates, events and deadlines for TXT and its members.
+        </div>
+<div class="calendar-layout">
+<div class="calendar">
+<div class="calendar-header">
+<button class="calendar-nav" id="prevMonth" type="button">
+    ←
+</button>
+<div class="calendar-month" id="calendarMonth">
+    SEPTEMBER 2026
+</div>
+<button class="calendar-nav" id="nextMonth" type="button">
+    →
+</button>
+</div>
+<div class="calendar-weekdays">
+<div>MON</div>
+<div>TUE</div>
+<div>WED</div>
+<div>THU</div>
+<div>FRI</div>
+<div>SAT</div>
+<div>SUN</div>
+</div>
+<div class="calendar-grid" id="calendarGrid">
+</div>
+</div>
+<div class="calendar-legend">
+<div class="calendar-legend-title">LEGEND</div>
+<div class="legend-item">
+<span class="legend-dot legend-voting"></span>
+<span>Voting</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot legend-streaming"></span>
+<span>Streaming</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot legend-release"></span>
+<span>Release / Official</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot legend-fanproject"></span>
+<span>Fan Project</span>
+</div>
+<div class="legend-item">
+<span class="legend-dot legend-award"></span>
+<span>Award / Achievement</span>
+</div>
+</div>
+</div>
+<div class="calendar-details" id="calendarDetails">
+</div>
+</div>
+</section></div>
+
+
+<div class="guides-resources-row">
+<section class="section" id="guides">
+<div class="container">
+<div class="section-title">
+                GUIDES
+            </div>
+<div class="section-subtitle">
+                Voting, streaming, accounts and FAQ guides.
+            </div>
+<div class="guides-grid">
+<div class="guide-card" onclick="toggleGuide(this)">
+<div class="guide-icon">
+<svg class="guide-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+<path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"></path>
+<path d="M9 12h6"></path>
+<path d="M9 16h6"></path>
+</svg>
+</div>
+<h3>VOTING GUIDE</h3>
+<p>
+        Guides and tutorials for voting platforms used for TXT support.
+    </p>
+<div class="guide-arrow">▸</div>
+<div class="guide-content" onclick="event.stopPropagation();">
+<div class="guide-source">
+<h4>TXT VOTING CREW</h4>
+<p>
+                Voting guides and tutorials for TXT support.
+            </p>
+<div class="guide-socials">
+<span class="guide-socials-label">
+        FIND THE GUIDE AUTHOR
+    </span>
+<div class="guide-socials-links">
+<a href="https://x.com/txtvotingcrew" rel="noopener noreferrer" target="_blank">
+            X
+        </a>
+<a href="https://www.instagram.com/txtvotingcrew/" rel="noopener noreferrer" target="_blank">
+            INSTAGRAM
+        </a>
+<a href="https://www.tiktok.com/@txtvotingcrew" rel="noopener noreferrer" target="_blank">
+            TIKTOK
+        </a>
+<a href="https://t.co/7pfpB4OqEG" rel="noopener noreferrer" target="_blank">
+            YOUTUBE
+        </a>
+<a href="https://txtvotingcrew.com/" rel="noopener noreferrer" target="_blank">
+            WEBSITE
+        </a>
+</div>
+</div>
+</div>
+<div class="guide-note">
+<p>
+                The linked guide collection covers current voting platforms used by MOA.
+            </p>
+<p>
+                If a platform is not covered by the linked guides,
+                TXT Support Hub may provide a short basic guide here.
+            </p>
+</div>
+</div>
+</div>
+<div class="guide-card" onclick="toggleGuide(this)">
+<div class="guide-icon">
+<svg class="guide-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M4 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3"></path>
+<path d="M15 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3"></path>
+<path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
+</svg>
+</div>
+<h3>STREAMING GUIDE</h3>
+<p>
+            How to support TXT through Spotify and YouTube.
+        </p>
+<div class="guide-arrow">▸</div>
+<div class="guide-content" onclick="event.stopPropagation();">
+<div class="guide-source">
+<h4>TXT STREAM BASE</h4>
+<p>
+            Streaming guides and resources for MOA.
+        </p>
+<div class="guide-note">
+<p>
+                Choose the streaming platform you need and find
+                the corresponding guide on the author's website.
+            </p>
+</div>
+<div class="activity-actions">
+<a class="activity-btn" href="https://txtstreambase.wixsite.com/txtsb/streaming" rel="noopener noreferrer" target="_blank">
+                OPEN STREAMING GUIDES →
+            </a>
+</div>
+<div class="guide-socials">
+<span class="guide-socials-label">
+                FIND THE GUIDE AUTHOR
+            </span>
+<div class="guide-socials-links">
+<a href="https://x.com/txtstreambase" rel="noopener noreferrer" target="_blank">
+                    X
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="guide-card" onclick="toggleGuide(this)">
+<div class="guide-icon">
+<svg class="guide-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+<path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+<path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+</svg>
+</div>
+<h3>SOCIAL / ENGAGEMENT</h3>
+<p>
+            Simple ways to support TXT across social platforms.
+        </p>
+<div class="guide-arrow">▸</div>
+<div class="guide-content" onclick="event.stopPropagation();">
+<div class="guide-source">
+<h4>SOCIAL / ENGAGEMENT GUIDE</h4>
+<p>
+            Simple ways to support TXT across social platforms.
+        </p>
+<div class="guide-note">
+<p>
+                OFFICIAL POSTS
+            </p>
+<p>
+                Support TXT's official posts, teasers, announcements
+                and releases through likes, reposts, comments and saves.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                HASHTAGS &amp; SOCIAL SUPPORT
+            </p>
+<p>
+                Use current hashtags and follow the recommendations
+                shared by fanbases during releases, events and promotions.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                FAN PROJECTS
+            </p>
+<p>
+                Join fan-organized projects and support events.
+                Current projects can be found in Current Activities,
+                with additional resources available in Resources.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                GOOD SOCIAL PRACTICES
+            </p>
+<p>
+                Keep support positive and respectful. Avoid spam,
+                fanwars and unnecessary negativity.
+            </p>
+</div>
+<div class="guide-socials">
+<span class="guide-socials-label">
+                USEFUL LINKS
+            </span>
+<div class="guide-socials-links">
+<a href="#voting">
+                    CURRENT ACTIVITIES
+                </a>
+<a href="#resources">
+                    RESOURCES
+                </a>
+<a href="https://x.com/TXT_bighit" rel="noopener noreferrer" target="_blank">
+                    TXT OFFICIAL
+                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="guide-card" onclick="toggleGuide(this)">
+<div class="guide-icon">
+<svg class="guide-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+<path d="M12 16v.01"></path>
+<path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
+</svg>
+</div>
+<h3>FAQ</h3>
+<p>
+            Quick answers to common MOA support questions.
+        </p>
+<div class="guide-arrow">▸</div>
+<div class="guide-content" onclick="event.stopPropagation();">
+<div class="guide-source">
+<div class="guide-note">
+<p>
+                WHAT IS TXT SUPPORT HUB?
+            </p>
+<p>
+                A central place to see what is happening now
+                and find useful support resources.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                WHERE SHOULD I START?
+            </p>
+<p>
+                Check TODAY'S PRIORITIES and CURRENT ACTIVITIES
+                to see what is relevant right now.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                WHERE DO I FIND VOTING INSTRUCTIONS?
+            </p>
+<p>
+                Open a current voting campaign and use GUIDE.
+                Detailed instructions are provided by the listed guide authors.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                WHERE DO I FIND STREAMING GUIDES?
+            </p>
+<p>
+                Open STREAMING GUIDE and choose the platform
+                through the linked guide hub.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                WHAT IF A PLATFORM IS NOT COVERED?
+            </p>
+<p>
+                TXT Support Hub may provide a short basic guide,
+                while detailed instructions remain with the original authors.
+            </p>
+</div>
+<div class="guide-note">
+<p>
+                WHERE CAN I FIND FAN PROJECTS?
+            </p>
+<p>
+                Check CURRENT ACTIVITIES and RESOURCES.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="resources">
+<div class="container">
+<div class="section-title">
+                RESOURCES
+            </div>
+<div class="section-subtitle">
+                Official links, fanbases and useful resources.
+            </div>
+<div class="resources-grid">
+<!-- OFFICIAL -->
+<div class="resource-card resource-expandable">
+<div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
+<div class="resource-icon">
+<svg class="resource-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M9 15l6 -6"></path>
+<path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464"></path>
+<path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463"></path>
+</svg>
+</div>
+<div>
+<h3>OFFICIAL</h3>
+<p>
+                    Official TXT platforms and social media.
+                </p>
+</div>
+<div class="resource-arrow">
+                ▸
+            </div>
+</div>
+<div class="resource-details">
+<div class="resource-links resource-links-compact">
+<a class="resource-link" href="https://txt.ibighit.com/eng/" rel="noopener noreferrer" target="_blank">
+                    TXT OFFICIAL
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://weverse.io/txt" rel="noopener noreferrer" target="_blank">
+                    WEVERSE
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://www.youtube.com/@TXT_bighit" rel="noopener noreferrer" target="_blank">
+                    YOUTUBE
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://www.tiktok.com/@txt.bighitent" rel="noopener noreferrer" target="_blank">
+                    TIKTOK
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://www.instagram.com/txt_bighit/" rel="noopener noreferrer" target="_blank">
+                    INSTAGRAM
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://x.com/TXT_bighit" rel="noopener noreferrer" target="_blank">
+                    X
+                    <span>→</span>
+</a>
+</div>
+</div>
+</div>
+<!-- VOTING PLATFORMS -->
+<div class="resource-card resource-expandable">
+<div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
+<div class="resource-icon">
+<svg class="resource-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+<path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"></path>
+<path d="M9 12h6"></path>
+<path d="M9 16h6"></path>
+</svg>
+</div>
+<div>
+<h3>VOTING PLATFORMS</h3>
+<p>
+                    Platforms used for current and future voting.
+                </p>
+</div>
+<div class="resource-arrow">
+                ▸
+            </div>
+</div>
+<div class="resource-details">
+<div class="resource-links">
+<a class="resource-link" href="https://www.mnetplus.world/" rel="noopener noreferrer" target="_blank">
+                    MNET PLUS
+                    <span>→</span>
+</a>
+<a class="resource-link" href="#voting">
+                    MUSIC SHOWS
+                    <span>→</span>
+</a>
+<a class="resource-link" href="#voting">
+                    AWARDS
+                    <span>→</span>
+</a>
+</div>
+</div>
+</div>
+<!-- STREAMING -->
+<div class="resource-card resource-expandable">
+<div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
+<div class="resource-icon">
+<svg class="resource-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M4 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3"></path>
+<path d="M15 15a2 2 0 0 1 2 -2h1a2 2 0 0 1 2 2v3a2 2 0 0 1 -2 2h-1a2 2 0 0 1 -2 -2l0 -3"></path>
+<path d="M4 15v-3a8 8 0 0 1 16 0v3"></path>
+</svg>
+</div>
+<div>
+<h3>STREAMING</h3>
+<p>
+                    Main platforms for supporting TXT releases.
+                </p>
+</div>
+<div class="resource-arrow">
+                ▸
+            </div>
+</div>
+<div class="resource-details">
+<div class="resource-links">
+<a class="resource-link" href="https://open.spotify.com/artist/0ghlgldX5Dd6720Q3qFyQB" rel="noopener noreferrer" target="_blank">
+                    SPOTIFY
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://www.youtube.com/@TXT_bighit" rel="noopener noreferrer" target="_blank">
+                    YOUTUBE
+                    <span>→</span>
+</a>
+</div>
+</div>
+</div>
+<!-- FANBASES & COMMUNITY -->
+<div class="resource-card resource-expandable">
+<div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
+<div class="resource-icon">
+<svg class="resource-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M18 8a3 3 0 0 1 0 6"></path>
+<path d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5"></path>
+<path d="M12 8l4.524 -3.77a.9 .9 0 0 1 1.476 .692v12.156a.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8"></path>
+</svg>
+</div>
+<div>
+<h3>FANBASES &amp; COMMUNITY</h3>
+<p>
+                    Fan projects, updates and community resources.
+                </p>
+</div>
+<div class="resource-arrow">
+                ▸
+            </div>
+</div>
+<div class="resource-details">
+<div class="resource-group-label">
+                MEMBER SUPPORT
+            </div>
+<div class="resource-links">
+<a class="resource-link" href="https://x.com/yeondreamfm" rel="noopener noreferrer" target="_blank">
+                    YEONJUN FANBASE
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://x.com/streamingsoob" rel="noopener noreferrer" target="_blank">
+                    SOOBIN FANBASE
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://x.com/CBGUnionGlobal" rel="noopener noreferrer" target="_blank">
+                    BEOMGYU FANBASE
+                    <span>→</span>
+</a>
+<div class="resource-link resource-link-soon">
+                    TAEHYUN FANBASE
+                    <small>SOON</small>
+</div>
+<a class="resource-link" href="https://x.com/HNKWorldwide" rel="noopener noreferrer" target="_blank">
+                    HUENING KAI FANBASE
+                    <span>→</span>
+</a>
+</div>
+<div class="resource-group-label">
+                SUPPORT TEAMS
+            </div>
+<div class="resource-links">
+<a class="resource-link" href="https://x.com/txtvotingcrew" rel="noopener noreferrer" target="_blank">
+                    TXT VOTING CREW
+                    <span>→</span>
+</a>
+<a class="resource-link" href="https://x.com/ppollbatu" rel="noopener noreferrer" target="_blank">
+                    TXT SUPPORT TEAM
+                    <span>→</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section class="section" id="achievements">
+<div class="container">
+<div class="section-title">
+            ACHIEVEMENTS
+        </div>
+<div class="section-subtitle">
+            Every vote, every stream and every effort becomes part of TXT's journey.
+        </div>
+<div class="achievement-grid">
+<div class="achievement-link">
+<div class="achievement-card achievement-toggle" onclick="toggleAchievement('awardsContent', 'awardsArrow')">
+<div class="achievement-icon">
+  <svg class="achievement-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      fill="#e6bf62"
+      d="M17 3a1 1 0 0 1 .993 .883l.007 .117v2.17a3 3 0 1 1 0 5.659v.171a6.002 6.002 0 0 1 -5 5.917v2.083h3a1 1 0 0 1 .117 1.993l-.117 .007h-8a1 1 0 0 1 -.117 -1.993l.117 -.007h3v-2.083a6.002 6.002 0 0 1 -4.996 -5.692l-.004 -.225v-.171a3 3 0 0 1 -3.996 -2.653l-.003 -.176l.005 -.176a3 3 0 0 1 3.995 -2.654l-.001 -2.17a1 1 0 0 1 1 -1h10zm-12 5a1 1 0 1 0 0 2a1 1 0 1 0 0 -2m14 0a1 1 0 1 0 0 2a1 1 0 1 0 0 -2"
+    />
+  </svg>
+</div>
+<h3>AWARDS</h3>
+<p>
+            Awards and trophies earned by TXT throughout their career.
+        </p>
+<div class="achievement-arrow" id="awardsArrow">
+            ▸
+        </div>
+</div>
+</div>
+<div class="achievement-content" id="awardsContent">
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('year2026', 'arrow2026')">
+<h3>2026</h3>
+<span id="arrow2026">▸</span>
+</div>
+<div class="year-content" id="year2026">
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 21h8"></path>
+    <path d="M12 17v4"></path>
+    <path d="M7 4h10"></path>
+    <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>
+    <path d="M3 9a2 2 0 1 0 4 0"></path>
+    <path d="M17 9a2 2 0 1 0 4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>ARTIST OF THE YEAR — DAESANG</h4>
+<p>2026 KM Chart Awards</p>
+<span class="award-result">
+  <svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>
+    <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>
+    <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path>
+  </svg>
+  TXT
+</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>ULTIMATE 12</h4>
+<p>2026 KM Chart Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST POPULAR MALE GROUP</h4>
+<p>2026 KM Chart Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST POPULAR SONG</h4>
+<p>2026 KM Chart Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST POPULAR SOLO MALE</h4>
+<p>2026 KM Chart Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>YEONJUN</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST INTERNATIONAL GROUP OF THE YEAR — MALE</h4>
+<p>2026 TIMA Honors</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BREAKOUT INTERNATIONAL ARTIST</h4>
+<p>2026 TIMA Honors</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>YEONJUN</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>K-POP WORLD CHOICE — SOLO</h4>
+<p>35th Seoul Music Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>YEONJUN</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>ICE CREAM — MUSIC BANK</h4>
+<p>KBS Music Bank</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>YEONJUN</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>ICE CREAM — SHOW! MUSIC CORE</h4>
+<p>MBC Show! Music Core</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>YEONJUN</span>
+</div>
+</div>
+</div>
+</div>
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('year2025', 'arrow2025')">
+<h3>2025</h3>
+<span id="arrow2025">▸</span>
+</div>
+<div class="year-content" id="year2025">
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST SONG</h4>
+<p>34th Seoul Music Awards — "Deja Vu"</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST ALBUM</h4>
+<p>34th Seoul Music Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BONSANG</h4>
+<p>34th Seoul Music Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BEST ALBUM</h4>
+<p>40th Golden Disc Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>BONSANG</h4>
+<p>2025 K-World Dream Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+<div class="award-card">
+<div class="award-icon">   <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">     <path d="M8 21h8"></path>     <path d="M12 17v4"></path>     <path d="M7 4h10"></path>     <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>     <path d="M3 9a2 2 0 1 0 4 0"></path>     <path d="M17 9a2 2 0 1 0 4 0"></path>   </svg> </div>
+<div>
+<h4>GLOBAL MUSIC ARTIST</h4>
+<p>2025 K-World Dream Awards</p>
+<span class="award-result"><svg class="award-result-svg" viewBox="0 0 24 24" aria-hidden="true">   <path d="M6 9a6 6 0 1 0 12 0a6 6 0 1 0 -12 0"></path>   <path d="M12 15l3.4 5.89l1.598 -3.233l3.598 .232l-3.4 -5.889"></path>   <path d="M6.802 12l-3.4 5.89l3.598 -.233l1.598 3.232l3.4 -5.889"></path> </svg>TXT</span>
+</div>
+</div>
+</div>
+</div>
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('year2024', 'arrow2024')">
+<h3>2024</h3>
+<span id="arrow2024">▸</span>
+</div>
+<div class="year-content" id="year2024">
+<p class="empty-year">
+                Awards will be added here.
+            </p>
+</div>
+</div>
+</div>
+<div class="achievement-link">
+<div class="achievement-card achievement-toggle" onclick="toggleAchievement('recordsContent', 'recordsArrow')">
+<div class="achievement-icon">
+  <svg class="achievement-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3" y="14" width="4" height="7" rx="1" fill="#f5f4ed"/>
+    <rect x="10" y="9" width="4" height="12" rx="1" fill="#efb8b8"/>
+    <rect x="17" y="4" width="4" height="17" rx="1" fill="#ed6f6f"/>
+  </svg>
+</div>
+<h3>RECORDS &amp; MILESTONES</h3>
+<p>
+            Chart records, streaming milestones and major achievements.
+        </p>
+<div class="achievement-arrow" id="recordsArrow">
+            ▸
+        </div>
+</div>
+</div>
+<div class="achievement-content" id="recordsContent">
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('records2026', 'recordsArrow2026')">
+<h3>2026</h3>
+<span id="recordsArrow2026">▸</span>
+</div>
+
+<div class="year-content" id="records2026">
+
+<div class="milestone-group-title">
+    TXT
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 8h-2a2 2 0 0 0 -2 2a2 2 0 1 1 -4 0v-1a2 2 0 0 0 -2 -2h-1a2 2 0 0 1 -2 -2v-.5"></path>
+    <path d="M3 12h3a2 2 0 0 1 2 2v.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 1 1.5 1.5v3.25"></path>
+    <path d="M15 20.5v-3.5a2 2 0 0 1 2 -2h3.5"></path>
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  </svg>
+</div>
+<div>
+<h4>GLOBAL CITIZEN FESTIVAL — OFFICIAL LINEUP</h4>
+<p>
+    TXT were officially announced as part of the 2026 Global Citizen Festival lineup. The festival was later cancelled due to extreme weather.
+</p>
+<span class="award-result">
+    2026 · OFFICIAL LINEUP
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+    <path d="M8 11.973c2.5 -1.473 5.5 -.973 7.5 .527"></path>
+    <path d="M9 15c1.5 -1 4 -1 5 .5"></path>
+    <path d="M7 9c2 -1 6 -2 10 .5"></path>
+  </svg>
+</div>
+<div>
+<h4>LOVE LANGUAGE — 100M SPOTIFY STREAMS</h4>
+<p>
+    Love Language surpassed 100 million streams on Spotify, becoming TXT's 20th song to reach the milestone.
+</p>
+<span class="award-result">
+    20TH TXT SONG · SEP 20, 2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>7TH YEAR — BILLBOARD 200 #3</h4>
+<p>
+    7TH YEAR: A Moment of Stillness in the Thorns debuted at No. 3 on the Billboard 200.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>7TH YEAR — TOP ALBUM SALES #1</h4>
+<p>
+    7TH YEAR reached No. 1 on Billboard's Top Album Sales chart.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 17l6 -6l4 4l8 -8"></path>
+    <path d="M14 7l7 0l0 7"></path>
+  </svg>
+</div>
+<div>
+<h4>SETSUNA HANABI — BILLBOARD JAPAN HOT 100 #1</h4>
+<p>
+    Setsuna Hanabi reached No. 1 on the Billboard Japan Hot 100.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+    <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+    <path d="M7 12a5 5 0 0 1 5 -5"></path>
+    <path d="M12 17a5 5 0 0 0 5 -5"></path>
+  </svg>
+</div>
+<div>
+<h4>SETSUNA HANABI — RIAJ PLATINUM</h4>
+<p>
+    Setsuna Hanabi received RIAJ Platinum certification after exceeding 250,000 shipments.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 21h8"></path>
+    <path d="M12 17v4"></path>
+    <path d="M7 4h10"></path>
+    <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>
+    <path d="M3 9a2 2 0 1 0 4 0"></path>
+    <path d="M17 9a2 2 0 1 0 4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>STICK WITH YOU — MUSIC SHOW GRAND SLAM</h4>
+<p>
+    Stick With You completed a five-show music program Grand Slam.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="milestone-group-title">
+    YEONJUN
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+    <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+    <path d="M7 12a5 5 0 0 1 5 -5"></path>
+    <path d="M12 17a5 5 0 0 0 5 -5"></path>
+  </svg>
+</div>
+<div>
+<h4>NO LABELS: PART 02 — 661,924 FIRST-DAY SALES</h4>
+<p>
+    Yeonjun's album recorded 661,924 copies in first-day sales.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>NO LABELS: PART 02 — BILLBOARD 200 #16</h4>
+<p>
+    Yeonjun's album reached No. 16 on the Billboard 200.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 8h-2a2 2 0 0 0 -2 2a2 2 0 1 1 -4 0v-1a2 2 0 0 0 -2 -2h-1a2 2 0 0 1 -2 -2v-.5"></path>
+    <path d="M3 12h3a2 2 0 0 1 2 2v.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 1 1.5 1.5v3.25"></path>
+    <path d="M15 20.5v-3.5a2 2 0 0 1 2 -2h3.5"></path>
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  </svg>
+</div>
+<div>
+<h4>GLOBAL CITIZEN FESTIVAL INVITATION</h4>
+<p>
+    Yeonjun was invited to perform solo at the 2026 Global Citizen Festival.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('records2025', 'recordsArrow2025')">
+<h3>2025</h3>
+<span id="recordsArrow2025">▸</span>
+</div>
+
+<div class="year-content" id="records2025">
+
+<div class="milestone-group-title">
+    TXT
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>THE STAR CHAPTER: TOGETHER — BILLBOARD 200 #3</h4>
+<p>
+    The Star Chapter: TOGETHER debuted at No. 3 on the Billboard 200, giving TXT their seventh top 5 album on the chart.
+</p>
+<span class="award-result">
+    7TH TOP 5 ALBUM · 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>THE STAR CHAPTER: TOGETHER — TOP ALBUM SALES #1</h4>
+<p>
+    The Star Chapter: TOGETHER debuted at No. 1 on Billboard's Top Album Sales chart.
+</p>
+<span class="award-result">
+    2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>THE STAR CHAPTER: TOGETHER — CIRCLE YEAR-END #5</h4>
+<p>
+    The Star Chapter: TOGETHER ranked No. 5 on the 2025 Circle Album Chart with 1,801,907 copies.
+</p>
+<span class="award-result">
+    #5 · 1,801,907
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8"></path>
+    <path d="M10 9l5 3l-5 3l0 -6"></path>
+  </svg>
+</div>
+<div>
+<h4>CHASING THAT FEELING — 100M YOUTUBE VIEWS</h4>
+<p>
+    Chasing That Feeling surpassed 100 million views on YouTube, becoming TXT's ninth music video to reach the milestone.
+</p>
+<span class="award-result">
+    9TH TXT MV · MAY 10, 2025
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="awards-year">
+<div class="year-toggle" onclick="toggleYear('records2024', 'recordsArrow2024')">
+<h3>2024</h3>
+<span id="recordsArrow2024">▸</span>
+</div>
+
+<div class="year-content" id="records2024">
+
+<div class="milestone-group-title">
+    TXT
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>THE NAME CHAPTER: FREEFALL — 60 WEEKS ON BILLBOARD 200</h4>
+<p>
+    TXT reached 60 cumulative weeks on the Billboard 200 across their albums, becoming the second K-pop artist to reach the milestone.
+</p>
+<span class="award-result">
+    60 WEEKS · JAN 2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>MINISODE 3: TOMORROW — BILLBOARD 200 #3</h4>
+<p>
+    minisode 3: TOMORROW debuted at No. 3 on the Billboard 200, becoming TXT's fifth album to enter the top 5.
+</p>
+<span class="award-result">
+    #3 · 2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8"></path>
+    <path d="M10 9l5 3l-5 3l0 -6"></path>
+  </svg>
+</div>
+<div>
+<h4>LO$ER=LO♡ER — 100M YOUTUBE VIEWS</h4>
+<p>
+    LO$ER=LO♡ER surpassed 100 million views on YouTube, becoming TXT's seventh music video to reach the milestone.
+</p>
+<span class="award-result">
+    7TH TXT MV · APR 30, 2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>THE STAR CHAPTER: SANCTUARY — BILLBOARD 200 #2</h4>
+<p>
+    The Star Chapter: SANCTUARY debuted at No. 2 on the Billboard 200 and No. 1 on Top Album Sales.
+</p>
+<span class="award-result">
+    #2 · 7TH TOP ALBUM SALES #1 · 2024
+</span>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<div class="achievement-card achievement-toggle" onclick="toggleAchievement('memberAchievementsContent', 'memberAchievementsArrow')">
+<div class="achievement-icon">
+  <svg class="achievement-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#e6bf62" d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z"/>
+  </svg>
+</div>
+<h3>MEMBER ACHIEVEMENTS</h3>
+<p>
+            Individual achievements and milestones of each TXT member.
+        </p>
+<div class="achievement-arrow" id="memberAchievementsArrow">
+    ▸
+    </div>
+</div>
+<div class="achievement-content" id="memberAchievementsContent">
+<div class="member-achievement-card member-toggle" onclick="toggleMember('yeonjunAchievements', 'yeonjunArrow')">
+<h3>YEONJUN</h3>
+<div class="member-arrow" id="yeonjunArrow">
+    ▸
+</div>
+
+<div class="member-achievement-content" id="yeonjunAchievements">
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+    <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+    <path d="M7 12a5 5 0 0 1 5 -5"></path>
+    <path d="M12 17a5 5 0 0 0 5 -5"></path>
+  </svg>
+</div>
+<div>
+<h4>NO LABELS: PART 02 — 661,924 FIRST-DAY SALES</h4>
+<p>
+    Yeonjun's album recorded 661,924 copies in first-day sales.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>NO LABELS: PART 02 — BILLBOARD 200 #16</h4>
+<p>
+    Yeonjun's album reached No. 16 on the Billboard 200.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M8 21h8"></path>
+    <path d="M12 17v4"></path>
+    <path d="M7 4h10"></path>
+    <path d="M17 4v8a5 5 0 0 1-10 0V4"></path>
+    <path d="M3 9a2 2 0 1 0 4 0"></path>
+    <path d="M17 9a2 2 0 1 0 4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>K-POP WORLD CHOICE — SOLO</h4>
+<p>
+    Yeonjun won the K-Pop World Choice — Solo award at the 35th Seoul Music Awards.
+</p>
+<span class="award-result">
+    35TH SEOUL MUSIC AWARDS · 2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 8h-2a2 2 0 0 0 -2 2a2 2 0 1 1 -4 0v-1a2 2 0 0 0 -2 -2h-1a2 2 0 0 1 -2 -2v-.5"></path>
+    <path d="M3 12h3a2 2 0 0 1 2 2v.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 1 1.5 1.5v3.25"></path>
+    <path d="M15 20.5v-3.5a2 2 0 0 1 2 -2h3.5"></path>
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  </svg>
+</div>
+<div>
+<h4>GLOBAL CITIZEN FESTIVAL INVITATION</h4>
+<p>
+    Yeonjun was invited to perform solo at the 2026 Global Citizen Festival.
+</p>
+<span class="award-result">
+    2026
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"></path>
+    <path d="M3 3l2 2"></path>
+    <path d="M21 3l-2 2"></path>
+    <path d="M3 21l2 -2"></path>
+    <path d="M21 21l-2 -2"></path>
+  </svg>
+</div>
+<div>
+<h4>MONCLER — GLOBAL BRAND AMBASSADOR</h4>
+<p>
+    Yeonjun was appointed a global brand ambassador for Italian luxury fashion house Moncler.
+</p>
+<span class="award-result">
+    2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"></path>
+    <path d="M3 3l2 2"></path>
+    <path d="M21 3l-2 2"></path>
+    <path d="M3 21l2 -2"></path>
+    <path d="M21 21l-2 -2"></path>
+  </svg>
+</div>
+<div>
+<h4>MIU MIU — FRIEND OF THE HOUSE</h4>
+<p>
+    Yeonjun became Miu Miu's first official Friend of the House in April 2026.
+</p>
+<span class="award-result">
+    APR 2026
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="member-achievement-card member-toggle" onclick="toggleMember('soobinAchievements', 'soobinArrow')">
+<h3>SOOBIN</h3>
+<div class="member-arrow" id="soobinArrow">
+    ▸
+</div>
+
+<div class="member-achievement-content" id="soobinAchievements">
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6"></path>
+    <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10"></path>
+    <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14"></path>
+    <path d="M4 20h14"></path>
+  </svg>
+</div>
+<div>
+<h4>SUNDAY DRIVER — CIRCLE DOWNLOAD CHART #5</h4>
+<p>
+    Soobin's solo track "Sunday Driver" debuted at No. 5 on the Circle Digital Download Chart.
+</p>
+<span class="award-result">
+    #5 · 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M10 6v3"></path>
+    <path d="M14 6v3"></path>
+    <path d="M5 11a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -8"></path>
+    <path d="M10 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    <path d="M9 3h6v3h-6l0 -3"></path>
+  </svg>
+</div>
+<div>
+<h4>INTO U — YOUTH AMBASSADOR</h4>
+<p>
+    Soobin was appointed Youth Ambassador for Chinese cosmetics brand INTO U.
+</p>
+<span class="award-result">
+    AUG 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"></path>
+    <path d="M3 3l2 2"></path>
+    <path d="M21 3l-2 2"></path>
+    <path d="M3 21l2 -2"></path>
+    <path d="M21 21l-2 -2"></path>
+  </svg>
+</div>
+<div>
+<h4>COVERNAT — BRAND AMBASSADOR</h4>
+<p>
+    Soobin was appointed brand ambassador for Korean contemporary fashion brand COVERNAT.
+</p>
+<span class="award-result">
+    SEP 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M14.504 8.522l-1.758 -4.032a.814 .814 0 0 0 -1.492 0l-1.759 4.032c-.19 .436 -.537 .784 -.973 .973l-4.032 1.759a.814 .814 0 0 0 0 1.492l4.033 1.758c.436 .19 .784 .538 .973 .974l1.759 4.033a.814 .814 0 0 0 1.492 0l1.758 -4.033c.19 -.436 .538 -.784 .974 -.974l4.033 -1.758a.814 .814 0 0 0 0 -1.492l-4.033 -1.759a1.88 1.88 0 0 1 -.974 -.973"></path>
+    <path d="M3 3l2 2"></path>
+    <path d="M21 3l-2 2"></path>
+    <path d="M3 21l2 -2"></path>
+    <path d="M21 21l-2 -2"></path>
+  </svg>
+</div>
+<div>
+<h4>DOLCE&amp;GABBANA — GLOBAL AMBASSADOR</h4>
+<p>
+    Soobin was announced as a global ambassador for Italian luxury fashion house Dolce&amp;Gabbana.
+</p>
+<span class="award-result">
+    SEP 8, 2026
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="member-achievement-card member-toggle" onclick="toggleMember('beomgyuAchievements', 'beomgyuArrow')">
+<h3>BEOMGYU</h3>
+<div class="member-arrow" id="beomgyuArrow">
+    ▸
+</div>
+
+<div class="member-achievement-content" id="beomgyuAchievements">
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M9 17v-13h10v13"></path>
+    <path d="M9 8h10"></path>
+  </svg>
+</div>
+<div>
+<h4>PANIC — SOLO DEBUT</h4>
+<p>
+    Beomgyu released his first solo mixtape "Panic" in March 2025, showcasing his own musical style with a rock band sound.
+</p>
+<span class="award-result">
+    MAR 27, 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20 8h-2a2 2 0 0 0 -2 2a2 2 0 1 1 -4 0v-1a2 2 0 0 0 -2 -2h-1a2 2 0 0 1 -2 -2v-.5"></path>
+    <path d="M3 12h3a2 2 0 0 1 2 2v.5a1.5 1.5 0 0 0 1.5 1.5a1.5 1.5 0 0 1 1.5 1.5v3.25"></path>
+    <path d="M15 20.5v-3.5a2 2 0 0 1 2 -2h3.5"></path>
+    <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+  </svg>
+</div>
+<div>
+<h4>PANIC — ITUNES #1 IN 11+ REGIONS</h4>
+<p>
+    "Panic" reached No. 1 on iTunes Top Songs charts in at least 11 regions and charted in at least 43 regions worldwide.
+</p>
+<span class="award-result">
+    11+ REGIONS · 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+    <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0"></path>
+  </svg>
+</div>
+<div>
+<h4>PANIC — LINE MUSIC #2</h4>
+<p>
+    "Panic" reached No. 2 on Line Music's real-time chart in Japan within five hours of its release.
+</p>
+<span class="award-result">
+    #2 · JAPAN · 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M10 6v3"></path>
+    <path d="M14 6v3"></path>
+    <path d="M5 11a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -8"></path>
+    <path d="M10 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    <path d="M9 3h6v3h-6l0 -3"></path>
+  </svg>
+</div>
+<div>
+<h4>CORALHAZE — BRAND AMBASSADOR</h4>
+<p>
+    Beomgyu was appointed a brand ambassador for Korean cosmetics brand Coralhaze in Korea and Japan.
+</p>
+<span class="award-result">
+    NOV 1, 2024
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="member-achievement-card member-toggle" onclick="toggleMember('taehyunAchievements', 'taehyunArrow')">
+<h3>TAEHYUN</h3>
+<div class="member-arrow" id="taehyunArrow">
+    ▸
+</div>
+
+<div class="member-achievement-content" id="taehyunAchievements">
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M9 17v-13h10v13"></path>
+    <path d="M9 8h10"></path>
+  </svg>
+</div>
+<div>
+<h4>BIRD OF NIGHT — CIRCLE DOWNLOAD #12</h4>
+<p>
+    "Bird of Night", Taehyun's solo track from The Star Chapter: TOGETHER, reached No. 12 on the Circle Download Chart.
+</p>
+<span class="award-result">
+    #12 · 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"></path>
+    <path d="M8 4l0 16"></path>
+    <path d="M16 4l0 16"></path>
+    <path d="M4 8l4 0"></path>
+    <path d="M4 16l4 0"></path>
+    <path d="M4 12l16 0"></path>
+    <path d="M16 8l4 0"></path>
+    <path d="M16 16l4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>CAN'T STOP — CIRCLE DOWNLOAD #51</h4>
+<p>
+    "Can't Stop", performed by Taehyun and Hueningkai for the Brewing Love OST, reached No. 51 on the Circle Download Chart.
+</p>
+<span class="award-result">
+    #51 · 2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M10 6v3"></path>
+    <path d="M14 6v3"></path>
+    <path d="M5 11a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -8"></path>
+    <path d="M10 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    <path d="M9 3h6v3h-6l0 -3"></path>
+  </svg>
+</div>
+<div>
+<h4>CENTELLIAN24 — GLOBAL AMBASSADOR</h4>
+<p>
+    Taehyun was appointed a global ambassador for Korean derma skincare brand Centellian24.
+</p>
+<span class="award-result">
+    FEB 2026
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div class="member-achievement-card member-toggle" onclick="toggleMember('hueningkaiAchievements', 'hueningkaiArrow')">
+<h3>HUENINGKAI</h3>
+<div class="member-arrow" id="hueningkaiArrow">
+    ▸
+</div>
+
+<div class="member-achievement-content" id="hueningkaiAchievements">
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M13 17a3 3 0 1 0 6 0a3 3 0 0 0 -3 -3a3 3 0 0 0 -3 3"></path>
+    <path d="M9 17v-13h10v13"></path>
+    <path d="M9 8h10"></path>
+  </svg>
+</div>
+<div>
+<h4>DANCE WITH YOU — SOLO TRACK</h4>
+<p>
+    Hueningkai released his solo track "Dance With You" as part of The Star Chapter: TOGETHER.
+</p>
+<span class="award-result">
+    JUL 21, 2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"></path>
+    <path d="M8 4l0 16"></path>
+    <path d="M16 4l0 16"></path>
+    <path d="M4 8l4 0"></path>
+    <path d="M4 16l4 0"></path>
+    <path d="M4 12l16 0"></path>
+    <path d="M16 8l4 0"></path>
+    <path d="M16 16l4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>CAN'T STOP — OST</h4>
+<p>
+    Hueningkai and Taehyun released "Can't Stop" as an OST for the Korean drama Brewing Love.
+</p>
+<span class="award-result">
+    2024
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"></path>
+    <path d="M8 4l0 16"></path>
+    <path d="M16 4l0 16"></path>
+    <path d="M4 8l4 0"></path>
+    <path d="M4 16l4 0"></path>
+    <path d="M4 12l16 0"></path>
+    <path d="M16 8l4 0"></path>
+    <path d="M16 16l4 0"></path>
+  </svg>
+</div>
+<div>
+<h4>SURFING IN THE MOONLIGHT — OST</h4>
+<p>
+    Hueningkai and Taehyun released "Surfing in the Moonlight" as an OST for the Korean drama Melo Movie.
+</p>
+<span class="award-result">
+    2025
+</span>
+</div>
+</div>
+
+<div class="award-card">
+<div class="award-icon">
+  <svg class="award-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M10 6v3"></path>
+    <path d="M14 6v3"></path>
+    <path d="M5 11a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -8"></path>
+    <path d="M10 15a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+    <path d="M9 3h6v3h-6l0 -3"></path>
+  </svg>
+</div>
+<div>
+<h4>DERMAFIRM — GLOBAL AMBASSADOR</h4>
+<p>
+    Hueningkai was appointed global ambassador for Korean derma skincare brand DERMAFIRM.
+</p>
+<span class="award-result">
+    JUL 2025
+</span>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<strong>TXT SUPPORT HUB</strong>
+<br/>
+        Built by MOA for MOA.
+    </div>
+</footer>
+<script>
+function toggleActivity(card) {
+
+    const details = card.querySelector('.activity-details');
+    const arrow = card.querySelector('.activity-arrow');
+
+    if (details.style.display === 'block') {
+
+        /* Close parent activity */
+        details.style.display = 'none';
+        arrow.textContent = '▸';
+
+        /* Reset all nested voting cards */
+        const childContents = card.querySelectorAll('.voting-card-content');
+
+        childContents.forEach(content => {
+            content.style.display = 'none';
+        });
+
+        const childArrows = card.querySelectorAll('.voting-card-arrow');
+
+        childArrows.forEach(childArrow => {
+            childArrow.textContent = '▸';
+        });
+
+    } else {
+
+        details.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+}
+
+function toggleVotingEvent(card) {
+
+    const content = card.querySelector('.voting-card-content');
+    const arrow = card.querySelector('.voting-card-arrow');
+
+    if (content.style.display === 'block') {
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+    }
+   function toggleGuide(card) {
+
+    const content = card.querySelector('.guide-content');
+    const arrow = card.querySelector('.guide-arrow');
+
+    if (content.style.display === 'block') {
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+}
+function toggleResource(card) {
+
+    const details = card.querySelector('.resource-details');
+    const arrow = card.querySelector('.resource-arrow');
+
+    if (details.style.display === 'block') {
+
+        details.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        details.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+}
+let currentVotingTab = 'current';
+let currentActivityFilter = 'ALL';
+
+function applyVotingFilters() {
+
+    const votingSection = document.getElementById('voting');
+
+    const memberTargets = [
+        'YEONJUN',
+        'SOOBIN',
+        'BEOMGYU',
+        'TAEHYUN',
+        'HUENING KAI'
+    ];
+
+    const selectedTarget = currentActivityFilter.toUpperCase();
+
+    votingSection.querySelectorAll('.activity-card').forEach(card => {
+
+        const isArchive = card.classList.contains('archive-card');
+
+        const matchesTab =
+            currentVotingTab === 'archive'
+                ? isArchive
+                : !isArchive;
+
+        if (!matchesTab) {
+            card.style.display = 'none';
+            return;
+        }
+
+
+        /*
+         * CURRENT VOTING
+         * This card contains nested voting campaigns.
+         */
+
+        if (card.classList.contains('activity-voting')) {
+
+            const nestedVotingCards =
+                card.querySelectorAll('.voting-card-expandable');
+
+            let visibleNestedCards = 0;
+
+            nestedVotingCards.forEach(votingCard => {
+
+                const targets = (votingCard.dataset.target || '')
+                    .split(',')
+                    .map(item => item.trim().toUpperCase());
+
+                let matchesFilter = false;
+
+                if (selectedTarget === 'ALL') {
+
+                    matchesFilter = true;
+
+                } else if (selectedTarget === 'MEMBERS') {
+
+                    matchesFilter = targets.some(item =>
+                        memberTargets.includes(item)
+                    );
+
+                } else {
+
+                    matchesFilter = targets.includes(selectedTarget);
+
+                }
+
+                if (matchesFilter) {
+
+                    votingCard.style.display = 'block';
+                    visibleNestedCards++;
+
+                } else {
+
+                    votingCard.style.display = 'none';
+
+                }
+
+            });
+
+
+            /*
+             * Keep CURRENT VOTING visible
+             * if at least one nested campaign matches.
+             */
+
+            card.style.display =
+                visibleNestedCards > 0
+                    ? 'block'
+                    : 'none';
+
+            return;
+        }
+
+
+        /*
+         * ALL OTHER ACTIVITY CARDS
+         */
+
+        const targets = (card.dataset.target || '')
+            .split(',')
+            .map(item => item.trim().toUpperCase());
+
+        let matchesFilter = false;
+
+        if (selectedTarget === 'ALL') {
+
+            matchesFilter = true;
+
+        } else if (selectedTarget === 'MEMBERS') {
+
+            matchesFilter = targets.some(item =>
+                memberTargets.includes(item)
+            );
+
+        } else {
+
+            matchesFilter = targets.includes(selectedTarget);
+
+        }
+
+        card.style.display =
+            matchesFilter
+                ? 'block'
+                : 'none';
+
+    });
+}
+
+
+function showVotingTab(tab, button) {
+
+    currentVotingTab = tab;
+
+    document.querySelectorAll('.voting-tab').forEach(tabButton => {
+        tabButton.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    applyVotingFilters();
+}
+
+
+function updateActivityFilterButtons(target) {
+
+    const normalizedTarget = target.toUpperCase();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+
+        btn.classList.remove('active');
+
+        const buttonTarget =
+            btn.textContent.trim().toUpperCase();
+
+        /*
+         * Individual members belong to the MEMBERS
+         * filter in the visible button row.
+         */
+
+        if (
+            normalizedTarget === buttonTarget ||
+            (
+                [
+                    'YEONJUN',
+                    'SOOBIN',
+                    'BEOMGYU',
+                    'TAEHYUN',
+                    'HUENING KAI'
+                ].includes(normalizedTarget) &&
+                buttonTarget === 'MEMBERS'
+            )
+        ) {
+
+            btn.classList.add('active');
+
+        }
+
+    });
+}
+
+
+function filterActivities(target, button) {
+
+    currentActivityFilter = target;
+
+    if (button) {
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        button.classList.add('active');
+
+    } else {
+
+        updateActivityFilterButtons(target);
+
+    }
+
+    applyVotingFilters();
+
+    document.querySelector('#voting').scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+
+function selectActivityFilter(target) {
+
+    filterActivities(target, null);
+
+}
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyVotingFilters);
+} else {
+    applyVotingFilters();
+}
+ function togglePriority(id, arrowId) {
+
+    const content = document.getElementById(id);
+    const arrow = document.getElementById(arrowId);
+    const card = content.closest('.priority-toggle');
+
+    if (content.style.display === 'block') {
+
+        /* Close parent */
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+        card.classList.remove('open');
+
+        /* Close every child item inside this parent */
+
+        const childContents = card.querySelectorAll('.priority-item-content');
+
+        childContents.forEach(child => {
+            child.style.display = 'none';
+        });
+
+        /* Close nested details */
+
+        const nestedDetails = card.querySelectorAll('.priority-vote-details');
+
+        nestedDetails.forEach(detail => {
+            detail.style.display = 'none';
+        });
+
+        /* Reset every child arrow */
+
+        const childArrows = card.querySelectorAll('.priority-item-arrow');
+
+        childArrows.forEach(childArrow => {
+            childArrow.textContent = '▸';
+        });
+
+        /* Reset special nested arrows */
+
+        const nestedArrows = card.querySelectorAll('.priority-arrow');
+
+        nestedArrows.forEach(nestedArrow => {
+            nestedArrow.textContent = '▸';
+        });
+
+    } else {
+
+        /* Open parent */
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+        card.classList.add('open');
+
+    }
+
+}
+
+function showTimePlan(time) {
+
+    const timePlan = document.getElementById('timePlan');
+
+    if (timePlan.style.display === 'block' && timePlan.dataset.time === time) {
+        timePlan.style.display = 'none';
+        return;
+    }
+
+    timePlan.dataset.time = time;
+
+    if (time === '5') {
+        timePlan.innerHTML = `
+            <div class="time-plan-title">
+    <svg class="time-plan-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M12 7v5l3 2"></path>
+    </svg>
+    5 MIN — QUICK SUPPORT
+</div>
+
+            <div class="time-plan-list">
+
+    <div class="time-plan-item">
+<svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+        <span>Vote in BreakTudo Awards — Stick With You</span>
+    </div>
+
+    <div class="time-plan-item">
+       <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+        <span>Vote for TXT — International Male Group</span>
+    </div>
+
+    <div class="time-plan-item">
+       <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+        <span>Put on a TXT playlist and stream for a few minutes</span>
+    </div>
+
+    <div class="time-plan-item">
+        <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+        <span>Pre-save Perfect Storm</span>
+    </div>
+
+</div>
+        `;
+
+        timePlan.style.display = 'block';
+    }
+
+
+   if (time === '10') {
+    timePlan.innerHTML = `
+        <div class="time-plan-title">
+    <svg class="time-plan-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M12 7v5l3 2"></path>
+    </svg>
+    10 MIN — A LITTLE MORE
+</div>
+
+        <div class="time-plan-list">
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Check the current BreakTudo votes</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Check a current TXT voting or streaming goal</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Put on a TXT playlist</span>
+            </div>
+
+            <div class="time-plan-item">
+               <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Share a current TXT support activity</span>
+            </div>
+
+        </div>
+    `;
+
+    timePlan.style.display = 'block';
+}
+
+
+if (time === '30') {
+    timePlan.innerHTML = `
+        <div class="time-plan-title">
+    <svg class="time-plan-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M12 7v5l3 2"></path>
+    </svg>
+    30 MIN — SUPPORT SESSION
+</div>
+
+        <div class="time-plan-list">
+
+            <div class="time-plan-item">
+               <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Vote in current awards</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Spend some time streaming</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Take part in a current fan project</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Check the current guides or resources</span>
+            </div>
+
+        </div>
+    `;
+
+    timePlan.style.display = 'block';
+}
+
+
+if (time === '60') {
+    timePlan.innerHTML = `
+        <div class="time-plan-title">
+    <svg class="time-plan-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="8"></circle>
+        <path d="M12 7v5l3 2"></path>
+    </svg>
+    1 HOUR+ — FULL SUPPORT
+</div>
+
+        <div class="time-plan-list">
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Spend some time voting</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Have a longer streaming session</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Take part in current fan projects</span>
+            </div>
+
+            <div class="time-plan-item">
+               <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Share some current TXT activities</span>
+            </div>
+
+            <div class="time-plan-item">
+                <svg class="time-plan-icon" viewBox="0 0 24 24" aria-hidden="true">
+<path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
+<path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
+</svg>
+                <span>Explore the guides and resources</span>
+            </div>
+
+        </div>
+    `;
+
+    timePlan.style.display = 'block';
+}
+}
+function togglePriorityItem(id, arrowId) {
+
+    const content = document.getElementById(id);
+    const arrow = document.getElementById(arrowId);
+
+    if (content.style.display === 'block') {
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+}
+  
+function toggleAchievement(id, arrowId) {
+
+    const content = document.getElementById(id);
+    const arrow = document.getElementById(arrowId);
+
+    if (content.style.display === 'block') {
+
+        /* Close parent */
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+        /* Close all nested year/member sections */
+        const childContents = content.querySelectorAll(
+            '.year-content, .member-achievement-content'
+        );
+
+        childContents.forEach(child => {
+            child.style.display = 'none';
+        });
+
+        /* Reset nested arrows */
+        const childArrows = content.querySelectorAll(
+            '.year-toggle span, .member-arrow'
+        );
+
+        childArrows.forEach(childArrow => {
+            childArrow.textContent = '▸';
+        });
+
+    } else {
+
+        /* Open parent */
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+}
+
+function showCalendarEvent(event) {
+
+    const details = document.getElementById('calendarDetails');
+
+    /* Click the same event again → close it */
+    if (
+        details.style.display === 'block' &&
+        details.dataset.event === event
+    ) {
+        details.style.display = 'none';
+        details.dataset.event = '';
+        return;
+    }
+
+    /* Remember which event is currently open */
+    details.dataset.event = event;
+
+    if (event === 'breaktudo') {
+
+        details.innerHTML = `
+            <div class="calendar-details-title">
+                BREAKTUDO AWARDS 2026
+            </div>
+
+            <div class="calendar-details-description">
+                Vote for TXT in BreakTudo Awards 2026.
+            </div>
+
+            <div class="calendar-details-info">
+                <span>VOTING</span>
+                <span>TXT</span>
+                <span>SEP 25 – OCT 17</span>
+            </div>
+
+            <div class="calendar-details-actions">
+
+                <a
+                    href="https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/"
+                    class="activity-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    STICK WITH YOU →
+                </a>
+
+                <a
+                    href="https://vote.breaktudoawards.com/vote/grupo-masculino-internacional/"
+                    class="activity-btn activity-btn-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    TXT →
+                </a>
+
+            </div>
+        `;
+
+    } else if (event === 'horns') {
+
+        details.innerHTML = `
+            <div class="calendar-details-title">
+                HORNS VS HALOS
+            </div>
+
+            <div class="calendar-details-description">
+                A fan-organized streaming event where MOAs compete in teams
+                and earn points through streaming, sharing proof and recruiting participants.
+            </div>
+
+            <div class="calendar-details-info">
+                <span>FAN PROJECT</span>
+                <span>TXT</span>
+                <span>SEP 24 – SEP 30</span>
+            </div>
+
+            <div class="calendar-details-description">
+                Streaming Stick With You &amp; Ice Cream earns points for the event.
+                No separate numerical streaming goal is listed.
+            </div>
+
+            <div class="calendar-details-actions">
+
+                <a
+                    href="https://t.co/BcOwelmYWE"
+                    class="activity-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    JOIN EVENT →
+                </a>
+
+                <a
+                    href="https://yeondreamfm.carrd.co/#/playlist"
+                    class="activity-btn activity-btn-secondary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    RULES &amp; PLAYLIST →
+                </a>
+
+            </div>
+        `;
+
+
+       } else if (event === 'soobin') {
+
+    details.innerHTML = `
+        <div class="calendar-details-title">
+            SOOBIN'S BIRTHDAY VOTING
+        </div>
+
+        <div class="calendar-details-description">
+            Birthday support voting for Soobin across multiple platforms.
+        </div>
+
+        <div class="calendar-details-info">
+            <span>VOTING</span>
+            <span>SOOBIN</span>
+            <span>AUG 27 – NOV 6</span>
+        </div>
+
+        <div class="calendar-details-actions">
+
+            <a
+                href="#voting"
+                class="activity-btn"
+                onclick="event.stopPropagation();"
+            >
+                VIEW CURRENT VOTING →
+            </a>
+
+        </div>
+`;
+    }
+
+    details.style.display = 'block';
+}
+function toggleMember(id, arrowId) {
+
+    const content = document.getElementById(id);
+    const arrow = document.getElementById(arrowId);
+
+    if (content.style.display === 'block') {
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+}
+
+function toggleYear(id, arrowId) {
+
+    const content = document.getElementById(id);
+    const arrow = document.getElementById(arrowId);
+
+    if (content.style.display === 'block') {
+
+        content.style.display = 'none';
+        arrow.textContent = '▸';
+
+    } else {
+
+        content.style.display = 'block';
+        arrow.textContent = '▾';
+
+    }
+
+}
+const today = new Date();
+let calendarDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
+function updateCalendarMonth() {
+    const monthNames = [
+        'JANUARY', 'FEBRUARY', 'MARCH', 'APRIL',
+        'MAY', 'JUNE', 'JULY', 'AUGUST',
+        'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'
+    ];
+
+    const month = calendarDate.getMonth();
+    const year = calendarDate.getFullYear();
+
+    document.getElementById('calendarMonth').textContent =
+        `${monthNames[month]} ${year}`;
+}
+   function createCalendarDays() {
+    const calendarGrid = document.getElementById('calendarGrid');
+
+    const year = calendarDate.getFullYear();
+    const month = calendarDate.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    // Понедельник — первый день недели
+    const startOffset = (firstDay + 6) % 7;
+
+    let daysHTML = '';
+
+    for (let i = 0; i < startOffset; i++) {
+        daysHTML += '<div class="calendar-day empty"></div>';
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+       daysHTML += `
+    <div class="calendar-day" data-date="${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}">
+        <div class="calendar-date">${day}</div>
+        <div class="calendar-events"></div>
+    </div>
+`;
+    }
+
+    const totalCells = startOffset + daysInMonth;
+    const trailingCells = (7 - (totalCells % 7)) % 7;
+
+    for (let i = 0; i < trailingCells; i++) {
+        daysHTML += '<div class="calendar-day empty"></div>';
+    }
+
+    calendarGrid.innerHTML = daysHTML;
+       // BREAKTUDO AWARDS 2026 — Voting
+const breaktudoStart = '2026-09-25';
+const breaktudoEnd = '2026-10-17';
+
+calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
+    const date = day.dataset.date;
+
+    if (date >= breaktudoStart && date <= breaktudoEnd) {
+
+        let segmentClass = 'calendar-range-bar calendar-event-voting';
+
+        if (date === breaktudoStart) {
+            segmentClass += ' calendar-range-first';
+        } else if (date === breaktudoEnd) {
+            segmentClass += ' calendar-range-last';
+        } else {
+            segmentClass += ' calendar-range-middle';
+        }
+
+                const monthStart = `${year}-${String(month + 1).padStart(2, '0')}-01`;
+        const showLabel =
+            date === breaktudoStart ||
+            (date === monthStart && date >= breaktudoStart && date <= breaktudoEnd);
+
+        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
+            <button
+                class="${segmentClass}"
+                type="button"
+                onclick="showCalendarEvent('breaktudo')">
+                ${showLabel ? 'BreakTudo Awards' : ''}
+            </button>
+        `);
+    }
+});
+
+
+// HORNS VS HALOS — Fan Project
+const hornsStart = '2026-09-24';
+const hornsEnd = '2026-09-30';
+
+calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
+    const date = day.dataset.date;
+
+    if (date >= hornsStart && date <= hornsEnd) {
+
+        let segmentClass = 'calendar-range-bar calendar-event-fanproject';
+
+        if (date === hornsStart) {
+            segmentClass += ' calendar-range-first';
+        } else if (date === hornsEnd) {
+            segmentClass += ' calendar-range-last';
+        } else {
+            segmentClass += ' calendar-range-middle';
+        }
+
+        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
+            <button
+                class="${segmentClass}"
+                type="button"
+                onclick="showCalendarEvent('horns')">
+                ${date === hornsStart ? 'Horns vs Halos' : ''}
+            </button>
+        `);
+    }
+});
+      // SOOBIN'S BIRTHDAY VOTING
+const soobinStart = '2026-08-27';
+const soobinEnd = '2026-11-06';
+
+calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
+    const date = day.dataset.date;
+
+    if (date >= soobinStart && date <= soobinEnd) {
+
+        let segmentClass = 'calendar-range-bar calendar-event-voting';
+
+        if (date === soobinStart) {
+            segmentClass += ' calendar-range-first';
+        } else if (date === soobinEnd) {
+            segmentClass += ' calendar-range-last';
+        } else {
+            segmentClass += ' calendar-range-middle';
+        }
+
+        const monthStart = `${year}-${String(month + 1).padStart(2, '0')}-01`;
+
+        const showLabel =
+            date === soobinStart ||
+            (date === monthStart && date >= soobinStart && date <= soobinEnd);
+
+        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
+            <button
+                class="${segmentClass}"
+                type="button"
+                onclick="showCalendarEvent('soobin')">
+                ${showLabel ? "Soobin's Birthday Voting" : ''}
+            </button>
+        `);
+    }
+});
+}
+   document.getElementById('prevMonth').addEventListener('click', () => {
+    calendarDate.setMonth(calendarDate.getMonth() - 1);
+    updateCalendarMonth();
+    createCalendarDays();
+});
+
+document.getElementById('nextMonth').addEventListener('click', () => {
+    calendarDate.setMonth(calendarDate.getMonth() + 1);
+    updateCalendarMonth();
+    createCalendarDays();
+});
+   updateCalendarMonth();
+   createCalendarDays();
+</script>
+<script>
+(function () {
+    const root = document.documentElement;
+    const button = document.getElementById("themeToggle");
+
+    function setTheme(theme) {
+        root.setAttribute("data-theme", theme);
+        if (!button) return;
+        const night = theme !== "day";
+        button.textContent = night ? "☾ NIGHT" : "☀ DAY";
+        button.setAttribute("aria-pressed", night ? "true" : "false");
+    }
+
+    const saved = localStorage.getItem("txtSupportHubTheme");
+    setTheme(saved === "day" ? "day" : "night");
+
+    if (button) {
+        button.addEventListener("click", function () {
+            const next = root.getAttribute("data-theme") === "day" ? "night" : "day";
+            localStorage.setItem("txtSupportHubTheme", next);
+            setTheme(next);
+        });
+    }
+})();
+</script></body>
+</html>
