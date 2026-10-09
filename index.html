@@ -2580,6 +2580,60 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+   
+/* FOOTER — CONTACT & FEEDBACK */
+
+footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.footer-contact > strong {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: #a9cdb9;
+}
+
+.footer-contact-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.footer-contact-links a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    transition: opacity 0.2s ease;
+}
+
+.footer-contact-links a:hover {
+    opacity: 0.65;
+}
+
+@media (max-width: 600px) {
+    footer .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+    }
+
+    .footer-contact {
+        gap: 8px;
+    }
+}
 </style>
 </head>
 <body>
@@ -5351,11 +5405,23 @@ FAN PROJECTS
 </section>
 </main>
 <footer>
-<div class="container">
-<strong>TXT SUPPORT HUB</strong>
-<br/>
-        Built by MOA for MOA.
+  <div class="container">
+    <strong>TXT SUPPORT HUB</strong>
+
+    <div class="footer-contact">
+      <strong>CONTACT &amp; FEEDBACK</strong>
+      <div class="footer-contact-links">
+        <a href="https://t.me/opp1na" target="_blank" rel="noopener noreferrer">
+          TELEGRAM ↗
+        </a>
+        <a href="https://x.com/MfilINR" target="_blank" rel="noopener noreferrer">
+          X ↗
+        </a>
+      </div>
     </div>
+
+    <span>Built by MOA for MOA.</span>
+  </div>
 </footer>
 <script>
 function toggleActivity(card) {
