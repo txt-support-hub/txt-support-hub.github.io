@@ -2660,6 +2660,16 @@ footer .container {
         gap: 8px;
     }
 }
+
+/* MAMA quick guide: scoped typography only; no global layout or background changes. */
+#mama-app-guide .guide-category { padding: 10px 11px; }
+#mama-app-guide .guide-category > strong { font-size: 9px; line-height: 1.4; letter-spacing: .25px; }
+#mama-app-guide .guide-category > span { display: block; font-size: 7.5px; line-height: 1.55; }
+#mama-app-guide .guide-category p { margin: 6px 0 0; color: var(--muted); font-size: 8px; font-weight: 400; line-height: 1.6; }
+#mama-app-guide .guide-category p strong { color: var(--text); font-size: 8px; font-weight: 700; letter-spacing: .15px; }
+#mama-app-guide .guide-category .activity-btn { font-size: 7.5px; }
+#mama-app-guide .guide-category .guide-category { margin-top: 12px; padding: 9px 10px; }
+
 </style>
 </head>
 <body>
@@ -2775,7 +2785,7 @@ footer .container {
 <div class="priority-item-content" id="urgentVotingContent">
 <div class="priority-vote" style="margin-bottom:10px">
 <strong>MAMA 2026 — FANS' CHOICE</strong>
-<span id="mamaPriorityStatus">Round 1 starts October 12, 19:00 KST</span>
+<span id="mamaPriorityStatus">Round 1 · Mnet Plus + X</span>
 <div style="margin-top:10px"><a class="activity-btn" href="https://www.mnetplus.world/" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">MNET PLUS →</a> <a class="activity-btn" href="#mama-app-guide" onclick="event.stopPropagation()">VOTING GUIDE ↓</a></div>
 </div>
 <div class="priority-vote">
@@ -2847,9 +2857,10 @@ FAN PROJECTS
 
 <div class="priority-item-content" id="urgentProjectsContent">
 <div class="priority-vote">
-<strong>NO ACTIVE FAN PROJECTS</strong>
-<span>TXT</span>
-<span>New fan projects will be added here when available.</span>
+<strong>MAMA ROUND 1 — VOTING COLLABORATION</strong>
+<span>TXT VOTING STAR · TXT, TREASURE, LNGSHOT, aespa, BABYMONSTER, Hearts2Hearts</span>
+<span>Fan-organized goal: 1,000 votes per day. Upload voting proofs to the organizers' Drive; do not hide the Voting ID. Include timestamps when possible.</span>
+<a class="activity-btn" href="https://drive.google.com/drive/folders/1ghiUkySf8JNJ5YQiHEoF0mrPsH6J9eLA" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">COLLAB DRIVE →</a>
 </div>
 </div>
 
@@ -3468,7 +3479,7 @@ FAN PROJECTS
             </h3>
 <div class="activity-meta">
 <span>TXT · COMMUNITY PROJECTS</span>
-<span>NO ACTIVE PROJECTS</span>
+<span>MAMA ROUND 1 COLLAB · ACTIVE</span>
 </div>
 </div>
 <div class="activity-arrow">
@@ -3485,7 +3496,7 @@ FAN PROJECTS
 <div class="fanproject-list">
 <div class="fanproject-item">
 <p class="fanproject-item-description">
-                    No active fan projects are currently listed.
+                    MAMA ROUND 1 — TXT VOTING STAR collaboration with TREASURE, LNGSHOT, aespa, BABYMONSTER and Hearts2Hearts. Fan-organized goal: 1,000 votes/day. Submit voting proofs (keep Voting ID visible; add timestamps when possible). <a class="activity-btn" href="https://drive.google.com/drive/folders/1ghiUkySf8JNJ5YQiHEoF0mrPsH6J9eLA" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">COLLAB DRIVE →</a>
                 </p>
 </div>
 </div>
@@ -4002,13 +4013,22 @@ FAN PROJECTS
 
 <div class="resource-details" id="mama-app-guide">
   <div class="guide-category" style="margin-top:0">
-    <strong>MNET PLUS — MAMA 2026</strong>
-    <span>HOW TO FIND MAMA VOTING</span>
-    <p style="margin-top:8px">1. Open the Mnet Plus app.</p>
-    <p>2. On the Home screen, tap the MAMA AWARDS banner at the top.</p>
-    <p>3. Find the FANS' CHOICE voting section once the round opens.</p>
-    <p>4. Follow the instructions in the app to cast your vote.</p>
-    <p style="margin-top:8px">Voting is available during the announced voting periods.</p>
+    <strong>MAMA 2026 — FANS' CHOICE</strong>
+    <span>ROUND 1: OCT 12, 19:00 – OCT 22, 23:59 KST · ROUND 2: OCT 28, 18:00 – NOV 8, 23:59 KST</span>
+    <p style="margin-top:9px"><strong>MNET PLUS VOTING</strong></p>
+    <p>1. Open the Mnet Plus app and tap the MAMA AWARDS banner on Home.</p>
+    <p>2. Open FANS' CHOICE MALE voting and select TXT. The official guide allows up to 3 teams in the male category.</p>
+    <p>3. Tap the final submission button to submit your vote.</p>
+    <p>4. Read the complete voting notice in Mnet Plus so your vote is counted.</p>
+    <p style="margin-top:9px"><strong>X (TWITTER) VOTING</strong></p>
+    <p>1. Use a public X account and access the official voting page in Mnet Plus.</p>
+    <p>2. Use both <strong>#2026MAMAVOTE</strong> and <strong>#tomorrowxtogether</strong> (recommended TXT hashtag; hashtags are not case-sensitive).</p>
+    <p><button class="activity-btn" type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('#2026MAMAVOTE #tomorrowxtogether').then(() => { this.textContent = 'COPIED ✓'; }).catch(() => { this.textContent = 'SELECT HASHTAGS ABOVE'; })">COPY X HASHTAGS</button></p>
+    <p>3. Vote for only one nominee in the selected category. Do not include hashtags for multiple artists.</p>
+    <p>4. One valid X vote per account per day (KST); if you submit multiple posts, only the first counts.</p>
+    <p>5. Reposting another account's valid voting post can also count as a vote. Posts must comply with X rules.</p>
+    <p style="margin-top:9px">Use the official voting page to submit a valid X vote. The X rules apply to X voting only. MOAs report a one-account-per-device restriction in Mnet Plus; this is a community observation, not a confirmed official rule. Follow the app's own voting notice.</p>
+    <div class="activity-actions"><a class="activity-btn" href="https://www.mnetplus.world/" target="_blank" rel="noopener noreferrer">MNET PLUS →</a><a class="activity-btn" href="https://x.com/MnetMAMA" target="_blank" rel="noopener noreferrer">OFFICIAL MAMA X →</a></div>
   </div>
 </div>
 </div>
@@ -5313,14 +5333,14 @@ const TXT_ACTIVITY_DATA = {
     calendarLabel: 'MAMA Fans’ Choice',
     category: 'voting', member: 'txt', target: 'TXT',
     startDate: '2026-10-12', endDate: '2026-11-20',
-    status: 'ACTIVE', subtitle: 'TXT · MNET PLUS',
-    description: 'Support TXT in the MAMA 2026 Fans’ Choice voting rounds. All times KST.',
+    status: 'ACTIVE', subtitle: 'TXT · MNET PLUS + X',
+    description: 'Vote for TXT in Fans’ Choice via Mnet Plus and X. See the guide for each method. All times KST.',
     rounds: [
       {name: 'ROUND 1', start: '2026-10-12T19:00:00+09:00', end: '2026-10-22T23:59:59+09:00', label: 'OCT 12, 19:00 – OCT 22, 23:59 KST'},
       {name: 'ROUND 2', start: '2026-10-28T18:00:00+09:00', end: '2026-11-08T23:59:59+09:00', label: 'OCT 28, 18:00 – NOV 8, 23:59 KST'},
       {name: 'LIVE VOTE', start: '2026-11-20', end: '2026-11-20', label: 'NOV 20 · TIME TBA (KST)', dateOnly: true}
     ],
-    guideNote: 'Round dates are based on the shared MAMA 2026 timeline. Check Mnet Plus for voting instructions and updates.',
+    guideNote: 'Official MAMA Round 1 and Round 2 dates (KST). Vote on Mnet Plus and X; see the guide for separate rules. Live Vote details TBA.',
     actions: [{label: 'MNET PLUS →', url: 'https://www.mnetplus.world/'}, {label: 'VOTING GUIDE ↓', url: '#mama-app-guide', secondary: true}]
   },
   soobinBirthday2026: {
@@ -5382,7 +5402,7 @@ function mamaRoundStatus(round) {
 function mamaCurrentMessage() {
   const rounds = TXT_ACTIVITY_DATA.mama2026.rounds;
   const active = rounds.find(r => mamaRoundStatus(r) === 'ACTIVE');
-  if (active) return `${active.name} · VOTE NOW ON MNET PLUS`;
+  if (active) return `${active.name} · VOTE NOW ON MNET PLUS + X`;
   const liveDay = rounds.find(r => mamaRoundStatus(r).startsWith('LIVE VOTE DAY'));
   if (liveDay) return 'LIVE VOTE DAY · CHECK MNET PLUS FOR OPENING TIME';
   const next = rounds.find(r => mamaRoundStatus(r) === 'UPCOMING');
