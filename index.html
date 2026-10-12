@@ -1326,6 +1326,12 @@ h1 {
   gap: 2px;
 }
 
+.calendar-lane-spacer {
+  display: block;
+  min-height: 15px;
+  pointer-events: none;
+}
+
 .calendar-range-bar {
   display: block;
   width: calc(100% + 2px);
@@ -2261,6 +2267,26 @@ footer .container {
 .archive-card {
   display: none;
 }
+/* Compact paired platform/deadline rows for data-driven voting cards. */
+.voting-platform-deadlines {
+  grid-template-columns: 1fr;
+}
+.voting-platform-deadlines .voting-deadline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.voting-platform-deadlines .voting-deadline span {
+  margin-bottom: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.voting-platform-deadlines .voting-deadline strong {
+  flex: 0 1 auto;
+  text-align: right;
+}
+
 /* ---------------- RESPONSIVE ---------------- */
 
 @media (max-width: 980px) {
@@ -2747,11 +2773,16 @@ footer .container {
     </span>
 </div>
 <div class="priority-item-content" id="urgentVotingContent">
+<div class="priority-vote" style="margin-bottom:10px">
+<strong>MAMA 2026 — FANS' CHOICE</strong>
+<span id="mamaPriorityStatus">Round 1 starts October 12, 19:00 KST</span>
+<div style="margin-top:10px"><a class="activity-btn" href="https://www.mnetplus.world/" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">MNET PLUS →</a></div>
+</div>
 <div class="priority-vote">
 <strong>BREAKTUDO AWARDS 2026</strong>
 <span>Stick With You — K-pop Hit of the Year</span>
 <span>TXT — International Male Group</span>
-<span>Voting ends: October 17, 2026</span>
+<span data-breaktudo-priority-date>Voting ends: October 17, 2026</span>
 <div style="margin-top: 12px;">
 <a class="activity-btn" href="https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
                     STICK WITH YOU →
@@ -3348,184 +3379,7 @@ FAN PROJECTS
             Active voting campaigns and their current status, targets and deadlines.
         </p>
 <div class="voting-list">
-<!-- SOOBIN'S BIRTHDAY -->
-<div class="voting-card voting-card-expandable" data-target="SOOBIN" onclick="event.stopPropagation(); toggleVotingEvent(this)">
-<div class="voting-card-header">
-<div>
-<h4>SOOBIN'S BIRTHDAY VOTING</h4>
-<div class="voting-card-meta">
-<span>SOOBIN · BIRTHDAY SUPPORT</span>
-<span class="activity-status">
-<span class="activity-status-dot"></span>
-                        ACTIVE
-                    </span>
-</div>
-</div>
-<div class="voting-card-arrow">
-                ▸
-            </div>
-</div>
-<div class="voting-card-content">
-<p>
-                Current voting and collection information for Soobin's birthday support.
-            </p>
-<div class="voting-section-label">
-                PLATFORMS
-            </div>
-<div class="voting-platforms">
-<div class="voting-platform">
-                    CHOEAEDOL
-                </div>
-<div class="voting-platform">
-                    IDOKI
-                </div>
-<div class="voting-platform">
-                    HIGHER
-                </div>
-<div class="voting-platform">
-                    CHOEAEDOL — MIRACLE
-                </div>
-<div class="voting-platform">
-                    BICG
-                </div>
-<div class="voting-platform">
-                    KDOL
-                </div>
-<div class="voting-platform">
-                    UPICK
-                </div>
-<div class="voting-platform">
-                    MUBEAT
-                </div>
-<div class="voting-platform">
-                    IDOLCHAMP
-                </div>
-</div>
-<div class="voting-section-label">
-                DEADLINES
-            </div>
-<div class="voting-deadlines">
-<div class="voting-deadline">
-<span>CHOEAEDOL</span>
-<strong>NOV 6 · 23:59 KST</strong>
-</div>
-<div class="voting-deadline">
-<span>IDOKI</span>
-<strong>OCT 20</strong>
-</div>
-<div class="voting-deadline">
-<span>HIGHER</span>
-<strong>OCT 31</strong>
-</div>
-<div class="voting-deadline">
-<span>CHOEAEDOL — MIRACLE</span>
-<strong>OCT 31</strong>
-</div>
-<div class="voting-deadline">
-<span>BICG</span>
-<strong>BEGINNING OF OCTOBER</strong>
-</div>
-<div class="voting-deadline">
-<span>KDOL</span>
-<strong>OCT 20 — NOV 16</strong>
-</div>
-<div class="voting-deadline">
-<span>UPICK</span>
-<strong>3RD WEEK OF OCTOBER</strong>
-</div>
-<div class="voting-deadline">
-<span>MUBEAT</span>
-<strong>BEGINNING OF NOVEMBER</strong>
-</div>
-<div class="voting-deadline">
-<span>IDOLCHAMP</span>
-<strong>BEGINNING OF NOVEMBER</strong>
-</div>
-</div>
-<div class="voting-guide-note">
-                Detailed voting instructions are available in the linked guides below.
-            </div>
-<div class="activity-actions">
-<a class="activity-btn activity-btn-secondary" href="#guides" onclick="event.stopPropagation();">
-                    GUIDE ↓
-                </a>
-</div>
-</div>
-</div>
-<!-- BREAKTUDO AWARDS -->
-<div class="voting-card voting-card-expandable" data-target="TXT" onclick="event.stopPropagation(); toggleVotingEvent(this)">
-<div class="voting-card-header">
-<div>
-<h4>BREAKTUDO AWARDS 2026</h4>
-<div class="voting-card-meta">
-<span>TXT · 2 CATEGORIES</span>
-<span class="activity-status">
-<span class="activity-status-dot"></span>
-                        ACTIVE
-                    </span>
-<span>OCT 17</span>
-</div>
-</div>
-<div class="voting-card-arrow">
-                ▸
-            </div>
-</div>
-<div class="voting-card-content">
-<div class="voting-category">
-<h5>K-POP HIT OF THE YEAR</h5>
-<p>
-                    Stick With You — TXT
-                </p>
-<div class="voting-stats">
-<div class="voting-stat">
-<span>CURRENT</span>
-<strong>Not publicly shown</strong>
-</div>
-<div class="voting-stat">
-<span>TARGET</span>
-<strong>Top spot</strong>
-</div>
-<div class="voting-stat">
-<span>DEADLINE</span>
-<strong>OCT 17, 2026</strong>
-</div>
-</div>
-</div>
-<div class="voting-category">
-<h5>INTERNATIONAL MALE GROUP</h5>
-<p>
-                    TXT
-                </p>
-<div class="voting-stats">
-<div class="voting-stat">
-<span>CURRENT</span>
-<strong>Not publicly shown</strong>
-</div>
-<div class="voting-stat">
-<span>TARGET</span>
-<strong>Top spot</strong>
-</div>
-<div class="voting-stat">
-<span>DEADLINE</span>
-<strong>OCT 17, 2026</strong>
-</div>
-</div>
-</div>
-<div class="activity-actions">
-<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
-    STICK WITH YOU →
-</a>
-
-<a class="activity-btn" href="https://vote.breaktudoawards.com/vote/grupo-masculino-internacional/" onclick="event.stopPropagation();" rel="noopener noreferrer" target="_blank">
-    TXT →
-</a>
-
-<a class="activity-btn activity-btn-secondary" href="#guides" onclick="event.stopPropagation();">
-    GUIDE ↓
-</a>
-</div>
-</div>
-</div>
+<!-- Voting cards are generated from TXT_ACTIVITY_DATA by renderVotingCards(). -->
 </div>
 </div>
 </div>
@@ -5422,6 +5276,230 @@ FAN PROJECTS
   </div>
 </footer>
 <script>
+// CENTRAL ACTIVITY REGISTRY — add future campaigns here.
+// All dates use YYYY-MM-DD (inclusive).
+const TXT_ACTIVITY_DATA = {
+  breaktudo2026: {
+    id: 'breaktudo',
+    name: 'BREAKTUDO AWARDS 2026',
+    calendarLabel: 'BreakTudo Awards',
+    category: 'voting',
+    member: 'txt',
+    startDate: '2026-09-25',
+    endDate: '2026-10-17',
+    status: 'ACTIVE',
+    target: 'TXT',
+    subtitle: 'TXT · 2 CATEGORIES',
+    showCompactEndDate: true,
+    description: '',
+    categories: [
+      {name: 'K-POP HIT OF THE YEAR', description: 'Stick With You — TXT', current: 'Not publicly shown', target: 'Top spot'},
+      {name: 'INTERNATIONAL MALE GROUP', description: 'TXT', current: 'Not publicly shown', target: 'Top spot'}
+    ],
+    actions: [
+      {label: 'STICK WITH YOU →', url: 'https://vote.breaktudoawards.com/vote/hit-k-pop-do-ano/'},
+      {label: 'TXT →', url: 'https://vote.breaktudoawards.com/vote/grupo-masculino-internacional/'},
+      {label: 'GUIDE ↓', url: '#guides', secondary: true}
+    ]
+  },
+  mama2026: {
+    id: 'mama2026',
+    name: "MAMA 2026 — FANS' CHOICE",
+    calendarLabel: 'MAMA Fans’ Choice',
+    category: 'voting', member: 'txt', target: 'TXT',
+    startDate: '2026-10-12', endDate: '2026-11-20',
+    status: 'ACTIVE', subtitle: 'TXT · MNET PLUS',
+    description: 'Support TXT in the MAMA 2026 Fans’ Choice voting rounds. All times KST.',
+    rounds: [
+      {name: 'ROUND 1', start: '2026-10-12T19:00:00+09:00', end: '2026-10-22T23:59:59+09:00', label: 'OCT 12, 19:00 – OCT 22, 23:59 KST'},
+      {name: 'ROUND 2', start: '2026-10-28T18:00:00+09:00', end: '2026-11-08T23:59:59+09:00', label: 'OCT 28, 18:00 – NOV 8, 23:59 KST'},
+      {name: 'LIVE VOTE', start: '2026-11-20', end: '2026-11-20', label: 'NOV 20 · TIME TBA (KST)', dateOnly: true}
+    ],
+    guideNote: 'Round dates are based on the shared MAMA 2026 timeline. Check Mnet Plus for voting instructions and updates.',
+    actions: [{label: 'MNET PLUS →', url: 'https://www.mnetplus.world/'}]
+  },
+  soobinBirthday2026: {
+    id: 'soobin',
+    name: "SOOBIN'S BIRTHDAY VOTING",
+    calendarLabel: "Soobin's Birthday Voting",
+    category: 'voting',
+    member: 'soobin',
+    startDate: '2026-08-27',
+    endDate: '2026-11-06',
+    status: 'ACTIVE',
+    target: 'SOOBIN',
+    subtitle: 'SOOBIN · BIRTHDAY SUPPORT',
+    showCompactEndDate: false,
+    // Each platform owns its deadline; future voting cards can reuse this format.
+    platforms: [
+      {name: 'CHOEAEDOL', deadline: 'NOV 6 · 23:59 KST'},
+      {name: 'IDOKI', deadline: 'OCT 20'},
+      {name: 'HIGHER', deadline: 'OCT 31'},
+      {name: 'CHOEAEDOL — MIRACLE', deadline: 'OCT 31'},
+      {name: 'BICG', deadline: 'BEGINNING OF OCTOBER'},
+      {name: 'KDOL', deadline: 'OCT 20 — NOV 16'},
+      {name: 'UPICK', deadline: '3RD WEEK OF OCTOBER'},
+      {name: 'MUBEAT', deadline: 'BEGINNING OF NOVEMBER'},
+      {name: 'IDOLCHAMP', deadline: 'BEGINNING OF NOVEMBER'}
+    ],
+    description: "Current voting and collection information for Soobin's birthday support.",
+    guideNote: 'Detailed voting instructions are available in the linked guides below.',
+    actions: [{label: 'GUIDE ↓', url: '#guides', secondary: true}]
+  }
+};
+
+// STAGE 4: One reusable card template for all voting records.
+// New campaigns require structured data, not copied HTML markup.
+function votingText(value) {
+  return String(value ?? '').replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
+}
+// Production: use the visitor's real clock; round boundaries include the KST offset.
+function mamaNow() {
+  return Date.now();
+}
+function mamaKstDate(timestamp) {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(new Date(timestamp));
+  const part = type => parts.find(item => item.type === type).value;
+  return `${part('year')}-${part('month')}-${part('day')}`;
+}
+function mamaRoundStatus(round) {
+  const now = mamaNow();
+  if (round.dateOnly) {
+    const day = mamaKstDate(now);
+    return day < round.start ? 'UPCOMING' : day > round.end ? 'ENDED' : 'LIVE VOTE DAY · TIME TBA';
+  }
+  return now < Date.parse(round.start) ? 'UPCOMING' : now > Date.parse(round.end) ? 'ENDED' : 'ACTIVE';
+}
+function mamaCurrentMessage() {
+  const rounds = TXT_ACTIVITY_DATA.mama2026.rounds;
+  const active = rounds.find(r => mamaRoundStatus(r) === 'ACTIVE');
+  if (active) return `${active.name} · VOTE NOW ON MNET PLUS`;
+  const liveDay = rounds.find(r => mamaRoundStatus(r).startsWith('LIVE VOTE DAY'));
+  if (liveDay) return 'LIVE VOTE DAY · CHECK MNET PLUS FOR OPENING TIME';
+  const next = rounds.find(r => mamaRoundStatus(r) === 'UPCOMING');
+  return next ? `${next.name} · ${next.label}` : 'VOTING ROUNDS ENDED';
+}
+function renderVotingDetails(activity) {
+  const parts = ['<div class="voting-card-content">'];
+  if (activity.description) parts.push(`<p>${votingText(activity.description)}</p>`);
+  if (Array.isArray(activity.rounds)) {
+    parts.push('<div class="voting-section-label">VOTING ROUNDS</div><div class="voting-deadlines voting-platform-deadlines">');
+    activity.rounds.forEach(round => parts.push(`<div class="voting-deadline" style="flex-wrap:wrap;gap:6px"><span>${votingText(round.name)} · ${votingText(mamaRoundStatus(round))}</span><strong>${votingText(round.label)}</strong></div>`));
+    parts.push('</div>');
+  }
+  if (Array.isArray(activity.categories)) {
+    activity.categories.forEach(category => {
+      const deadline = category.deadline || (activity.endDate ? formatActivityDate(activity.endDate).toUpperCase() : 'TBA');
+      parts.push(`<div class="voting-category">
+        <h5>${votingText(category.name)}</h5>
+        <p>${votingText(category.description || '')}</p>
+        <div class="voting-stats">
+          <div class="voting-stat"><span>CURRENT</span><strong>${votingText(category.current || 'Not publicly shown')}</strong></div>
+          <div class="voting-stat"><span>TARGET</span><strong>${votingText(category.target || 'Top spot')}</strong></div>
+          <div class="voting-stat"><span>DEADLINE</span><strong>${votingText(deadline)}</strong></div>
+        </div>
+      </div>`);
+    });
+  }
+  if (Array.isArray(activity.platforms) && activity.platforms.length) {
+    parts.push('<div class="voting-section-label">PLATFORMS &amp; DEADLINES</div><div class="voting-deadlines voting-platform-deadlines">');
+    activity.platforms.forEach(platform => {
+      parts.push(`<div class="voting-deadline"><span>${votingText(platform.name)}</span><strong>${votingText(platform.deadline || 'TBA')}</strong></div>`);
+    });
+    parts.push('</div>');
+  }
+  if (activity.guideNote) parts.push(`<div class="voting-guide-note">${votingText(activity.guideNote)}</div>`);
+  if (Array.isArray(activity.actions) && activity.actions.length) {
+    parts.push('<div class="activity-actions">');
+    activity.actions.forEach(action => {
+      const url = String(action.url || '#');
+      if (!url.startsWith('#') && !/^https:\/\//i.test(url)) return;
+      const external = /^https:\/\//i.test(url);
+      parts.push(`<a class="activity-btn${action.secondary ? ' activity-btn-secondary' : ''}" href="${votingText(url)}" onclick="event.stopPropagation();"${external ? ' rel="noopener noreferrer" target="_blank"' : ''}>${votingText(action.label)}</a>`);
+    });
+    parts.push('</div>');
+  }
+  parts.push('</div>');
+  return parts.join('');
+}
+function renderVotingCards() {
+  const list = document.querySelector('.activity-voting .voting-list');
+  if (!list) return;
+  list.replaceChildren();
+  Object.values(TXT_ACTIVITY_DATA)
+    .filter(activity => activity.category === 'voting' && activity.status === 'ACTIVE')
+    .sort((a, b) => (a.member === 'soobin' ? -1 : 1) - (b.member === 'soobin' ? -1 : 1))
+    .forEach(activity => {
+      const card = document.createElement('div');
+      card.className = 'voting-card voting-card-expandable';
+      card.dataset.target = activity.target || activity.member.toUpperCase();
+      card.onclick = function(event) {
+        event.stopPropagation();
+        toggleVotingEvent(card);
+      };
+      const displayStatus = activity.rounds ? (activity.rounds.some(r => mamaRoundStatus(r) === 'ACTIVE') ? 'ACTIVE' : activity.rounds.some(r => mamaRoundStatus(r) === 'UPCOMING') ? 'UPCOMING' : 'ENDED') : 'ACTIVE';
+      const metaDate = activity.showCompactEndDate
+        ? `<span>${votingText(formatActivityDate(activity.endDate, {month: 'short', day: 'numeric'}).toUpperCase())}</span>`
+        : '';
+      card.innerHTML = `
+        <div class="voting-card-header">
+          <div>
+            <h4>${votingText(activity.name)}</h4>
+            <div class="voting-card-meta">
+              <span>${votingText(activity.subtitle)}</span>
+              <span class="activity-status"><span class="activity-status-dot"></span>${displayStatus}</span>
+              ${metaDate}
+            </div>
+          </div>
+          <div class="voting-card-arrow">▸</div>
+        </div>
+        ${renderVotingDetails(activity)}`;
+      list.appendChild(card);
+    });
+}
+renderVotingCards();
+function updateMamaPriority() {
+  const el = document.getElementById('mamaPriorityStatus');
+  if (el) el.textContent = mamaCurrentMessage();
+}
+updateMamaPriority();
+setInterval(updateMamaPriority, 60000);
+
+// Future activities with category 'voting' can reuse this calendar renderer.
+const TXT_VOTING_ACTIVITIES = Object.values(TXT_ACTIVITY_DATA)
+  .filter(activity => activity.category === 'voting');
+
+function formatActivityDate(iso, options = {month: 'short', day: 'numeric', year: 'numeric'}) {
+  return new Intl.DateTimeFormat('en-US', {...options, timeZone: 'UTC'})
+    .format(new Date(iso + 'T00:00:00Z'));
+}
+
+// TEST STEP 6: deadlines, compact header date, priority date, and calendar use central data.
+(function () {
+  const iso = TXT_ACTIVITY_DATA.breaktudo2026.endDate;
+  const [year, month, day] = iso.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  const label = new Intl.DateTimeFormat('en-US', {
+    month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC'
+  }).format(date).toUpperCase();
+  document.querySelectorAll('[data-breaktudo-deadline]').forEach(el => {
+    el.textContent = label;
+  });
+  document.querySelectorAll('[data-breaktudo-meta-date]').forEach(el => {
+    el.textContent = label.replace(/,?\s+\d{4}$/, '');
+  });
+  const longLabel = new Intl.DateTimeFormat('en-US', {
+    month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC'
+  }).format(date);
+  document.querySelectorAll('[data-breaktudo-priority-date]').forEach(el => {
+    el.textContent = 'Voting ends: ' + longLabel;
+  });
+})();
+
 function toggleActivity(card) {
 
     const details = card.querySelector('.activity-details');
@@ -5842,6 +5920,7 @@ function showTimePlan(time) {
 </div>
         `;
 
+        timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class="time-plan-item"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
         timePlan.style.display = 'block';
     }
 
@@ -5893,6 +5972,7 @@ function showTimePlan(time) {
         </div>
     `;
 
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 
@@ -5944,6 +6024,7 @@ if (time === '30') {
         </div>
     `;
 
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 
@@ -6003,6 +6084,7 @@ if (time === '60') {
         </div>
     `;
 
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 }
@@ -6081,7 +6163,14 @@ function showCalendarEvent(event) {
     /* Remember which event is currently open */
     details.dataset.event = event;
 
-    if (event === 'breaktudo') {
+    if (event.startsWith('mama2026-')) {
+        const idx = Number(event.split('-')[1]);
+        const round = TXT_ACTIVITY_DATA.mama2026.rounds[idx];
+        details.innerHTML = `<div class="calendar-details-title">MAMA 2026 — FANS' CHOICE</div>
+          <div class="calendar-details-description">${votingText(round.name)} · ${votingText(round.label)}</div>
+          <div class="calendar-details-info"><span>VOTING</span><span>TXT</span><span>${votingText(mamaRoundStatus(round))}</span></div>
+          <div class="calendar-details-actions"><a class="activity-btn" href="https://www.mnetplus.world/" target="_blank" rel="noopener noreferrer">MNET PLUS →</a></div>`;
+    } else if (event === 'breaktudo') {
 
         details.innerHTML = `
             <div class="calendar-details-title">
@@ -6095,7 +6184,7 @@ function showCalendarEvent(event) {
             <div class="calendar-details-info">
                 <span>VOTING</span>
                 <span>TXT</span>
-                <span>SEP 25 – OCT 17</span>
+                <span>${new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric', timeZone: 'UTC'}).format(new Date(TXT_ACTIVITY_DATA.breaktudo2026.startDate + 'T00:00:00Z')).toUpperCase()} – ${new Intl.DateTimeFormat('en-US', {month: 'short', day: 'numeric', timeZone: 'UTC'}).format(new Date(TXT_ACTIVITY_DATA.breaktudo2026.endDate + 'T00:00:00Z')).toUpperCase()}</span>
             </div>
 
             <div class="calendar-details-actions">
@@ -6182,7 +6271,7 @@ function showCalendarEvent(event) {
         <div class="calendar-details-info">
             <span>VOTING</span>
             <span>SOOBIN</span>
-            <span>AUG 27 – NOV 6</span>
+            <span>${formatActivityDate(TXT_ACTIVITY_DATA.soobinBirthday2026.startDate, {month: 'short', day: 'numeric'}).toUpperCase()} – ${formatActivityDate(TXT_ACTIVITY_DATA.soobinBirthday2026.endDate, {month: 'short', day: 'numeric'}).toUpperCase()}</span>
         </div>
 
         <div class="calendar-details-actions">
@@ -6289,106 +6378,68 @@ function updateCalendarMonth() {
     }
 
     calendarGrid.innerHTML = daysHTML;
-       // BREAKTUDO AWARDS 2026 — Voting
-const breaktudoStart = '2026-09-25';
-const breaktudoEnd = '2026-10-17';
+    // Stage 6: assign a stable lane to each event for an entire calendar week.
+    // Invisible lane spacers keep bars aligned even when events start/end mid-week.
+    const periods = TXT_VOTING_ACTIVITIES.flatMap(activity =>
+      activity.rounds
+        ? activity.rounds.map((r, i) => ({
+            startDate: r.start.slice(0, 10), endDate: r.end.slice(0, 10),
+            label: `MAMA ${r.name}`, eventId: `${activity.id}-${i}`, type: 'voting'
+          }))
+        : [{startDate: activity.startDate, endDate: activity.endDate,
+            label: activity.calendarLabel, eventId: activity.id, type: 'voting'}]
+    );
+    periods.push({startDate:'2026-09-24', endDate:'2026-09-30',
+      label:'Horns vs Halos', eventId:'horns', type:'fanproject'});
 
-calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
-    const date = day.dataset.date;
-
-    if (date >= breaktudoStart && date <= breaktudoEnd) {
-
-        let segmentClass = 'calendar-range-bar calendar-event-voting';
-
-        if (date === breaktudoStart) {
-            segmentClass += ' calendar-range-first';
-        } else if (date === breaktudoEnd) {
-            segmentClass += ' calendar-range-last';
-        } else {
-            segmentClass += ' calendar-range-middle';
-        }
-
-                const monthStart = `${year}-${String(month + 1).padStart(2, '0')}-01`;
-        const showLabel =
-            date === breaktudoStart ||
-            (date === monthStart && date >= breaktudoStart && date <= breaktudoEnd);
-
-        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
-            <button
-                class="${segmentClass}"
-                type="button"
-                onclick="showCalendarEvent('breaktudo')">
-                ${showLabel ? 'BreakTudo Awards' : ''}
-            </button>
-        `);
+    const dayCells = [...calendarGrid.querySelectorAll('.calendar-day')];
+    for (let weekStart = 0; weekStart < dayCells.length; weekStart += 7) {
+      const weekCells = dayCells.slice(weekStart, weekStart + 7);
+      const dates = weekCells.map(cell => cell.dataset.date).filter(Boolean);
+      if (!dates.length) continue;
+      const first = dates[0], last = dates[dates.length - 1];
+      const weekPeriods = periods.filter(p => p.startDate <= last && p.endDate >= first)
+        .sort((a, b) => a.startDate.localeCompare(b.startDate) ||
+              a.endDate.localeCompare(b.endDate) || a.eventId.localeCompare(b.eventId));
+      const lanes = [];
+      weekPeriods.forEach(period => {
+        const start = period.startDate > first ? period.startDate : first;
+        const end = period.endDate < last ? period.endDate : last;
+        let lane = lanes.findIndex(occupied => occupied.every(other =>
+          end < other.start || start > other.end));
+        if (lane === -1) { lane = lanes.length; lanes.push([]); }
+        lanes[lane].push({start, end, period});
+      });
+      weekCells.forEach(cell => {
+        const date = cell.dataset.date;
+        if (!date) return;
+        const holder = cell.querySelector('.calendar-events');
+        lanes.forEach(lane => {
+          const match = lane.find(item => item.start <= date && item.end >= date);
+          if (!match) {
+            const spacer = document.createElement('span');
+            spacer.className = 'calendar-lane-spacer';
+            spacer.setAttribute('aria-hidden', 'true');
+            holder.appendChild(spacer);
+            return;
+          }
+          const period = match.period;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `calendar-range-bar calendar-event-${period.type}`;
+          if (date === period.startDate || date === first) button.classList.add('calendar-range-first');
+          else if (date === period.endDate || date === last) button.classList.add('calendar-range-last');
+          else button.classList.add('calendar-range-middle');
+          button.textContent = (date === period.startDate || date === first) ? period.label : '';
+          button.setAttribute('aria-label', `${period.label}, ${date}`);
+          button.addEventListener('click', () => showCalendarEvent(period.eventId));
+          holder.appendChild(button);
+        });
+        // Expand dense weeks rather than clipping the event lanes.
+        cell.style.minHeight = `${Math.max(70, 30 + lanes.length * 17)}px`;
+      });
     }
-});
 
-
-// HORNS VS HALOS — Fan Project
-const hornsStart = '2026-09-24';
-const hornsEnd = '2026-09-30';
-
-calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
-    const date = day.dataset.date;
-
-    if (date >= hornsStart && date <= hornsEnd) {
-
-        let segmentClass = 'calendar-range-bar calendar-event-fanproject';
-
-        if (date === hornsStart) {
-            segmentClass += ' calendar-range-first';
-        } else if (date === hornsEnd) {
-            segmentClass += ' calendar-range-last';
-        } else {
-            segmentClass += ' calendar-range-middle';
-        }
-
-        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
-            <button
-                class="${segmentClass}"
-                type="button"
-                onclick="showCalendarEvent('horns')">
-                ${date === hornsStart ? 'Horns vs Halos' : ''}
-            </button>
-        `);
-    }
-});
-      // SOOBIN'S BIRTHDAY VOTING
-const soobinStart = '2026-08-27';
-const soobinEnd = '2026-11-06';
-
-calendarGrid.querySelectorAll('.calendar-day[data-date]').forEach(day => {
-    const date = day.dataset.date;
-
-    if (date >= soobinStart && date <= soobinEnd) {
-
-        let segmentClass = 'calendar-range-bar calendar-event-voting';
-
-        if (date === soobinStart) {
-            segmentClass += ' calendar-range-first';
-        } else if (date === soobinEnd) {
-            segmentClass += ' calendar-range-last';
-        } else {
-            segmentClass += ' calendar-range-middle';
-        }
-
-        const monthStart = `${year}-${String(month + 1).padStart(2, '0')}-01`;
-
-        const showLabel =
-            date === soobinStart ||
-            (date === monthStart && date >= soobinStart && date <= soobinEnd);
-
-        day.querySelector('.calendar-events').insertAdjacentHTML('beforeend', `
-            <button
-                class="${segmentClass}"
-                type="button"
-                onclick="showCalendarEvent('soobin')">
-                ${showLabel ? "Soobin's Birthday Voting" : ''}
-            </button>
-        `);
-    }
-});
 }
    document.getElementById('prevMonth').addEventListener('click', () => {
     calendarDate.setMonth(calendarDate.getMonth() - 1);
@@ -6403,6 +6454,18 @@ document.getElementById('nextMonth').addEventListener('click', () => {
 });
    updateCalendarMonth();
    createCalendarDays();
+   // Show the relevant MAMA round by default. Clicking any calendar event
+   // afterwards replaces this selection; no automatic override of user choice.
+   const mamaRounds = TXT_ACTIVITY_DATA.mama2026.rounds;
+   const activeRoundIndex = mamaRounds.findIndex(round => {
+     const status = mamaRoundStatus(round);
+     return status === 'ACTIVE' || status.startsWith('LIVE VOTE DAY');
+   });
+   const upcomingRoundIndex = mamaRounds.findIndex(round => mamaRoundStatus(round) === 'UPCOMING');
+   const defaultRoundIndex = activeRoundIndex >= 0 ? activeRoundIndex : upcomingRoundIndex;
+   if (defaultRoundIndex >= 0) {
+     showCalendarEvent(`mama2026-${defaultRoundIndex}`);
+   }
 </script>
 <script>
 (function () {
@@ -6428,5 +6491,6 @@ document.getElementById('nextMonth').addEventListener('click', () => {
         });
     }
 })();
-</script></body>
+</script>
+</body>
 </html>
