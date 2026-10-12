@@ -2776,7 +2776,7 @@ footer .container {
 <div class="priority-vote" style="margin-bottom:10px">
 <strong>MAMA 2026 — FANS' CHOICE</strong>
 <span id="mamaPriorityStatus">Round 1 starts October 12, 19:00 KST</span>
-<div style="margin-top:10px"><a class="activity-btn" href="https://www.mnetplus.world/" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">MNET PLUS →</a></div>
+<div style="margin-top:10px"><a class="activity-btn" href="https://www.mnetplus.world/" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">MNET PLUS →</a> <a class="activity-btn" href="#mama-app-guide" onclick="event.stopPropagation()">VOTING GUIDE ↓</a></div>
 </div>
 <div class="priority-vote">
 <strong>BREAKTUDO AWARDS 2026</strong>
@@ -2893,7 +2893,7 @@ FAN PROJECTS
 <strong>SOOBIN'S BIRTHDAY VOTING</strong>
 <span>Multiple platforms</span>
 <span><strong class="priority-detail-label">Target:</strong> 9K Diamonds</span>
-<span><strong class="priority-detail-label">Ends:</strong> November 6, 2026</span>
+<span><strong class="priority-detail-label">Ends:</strong> November 16, 2026</span>
 <a class="activity-btn" href="#voting" onclick="event.stopPropagation();">
     VIEW VOTING →
 </a>
@@ -4000,12 +4000,17 @@ FAN PROJECTS
             </div>
 </div>
 
-<div class="resource-details">
-  <p>
-    Mini guides for voting apps will be added here
-    when they are not available from existing guide authors.
-  </p>
-   </div>
+<div class="resource-details" id="mama-app-guide">
+  <div class="guide-category" style="margin-top:0">
+    <strong>MNET PLUS — MAMA 2026</strong>
+    <span>HOW TO FIND MAMA VOTING</span>
+    <p style="margin-top:8px">1. Open the Mnet Plus app.</p>
+    <p>2. On the Home screen, tap the MAMA AWARDS banner at the top.</p>
+    <p>3. Find the FANS' CHOICE voting section once the round opens.</p>
+    <p>4. Follow the instructions in the app to cast your vote.</p>
+    <p style="margin-top:8px">Voting is available during the announced voting periods.</p>
+  </div>
+</div>
 </div>
 <!-- STREAMING -->
 <div class="resource-card resource-expandable">
@@ -5316,7 +5321,7 @@ const TXT_ACTIVITY_DATA = {
       {name: 'LIVE VOTE', start: '2026-11-20', end: '2026-11-20', label: 'NOV 20 · TIME TBA (KST)', dateOnly: true}
     ],
     guideNote: 'Round dates are based on the shared MAMA 2026 timeline. Check Mnet Plus for voting instructions and updates.',
-    actions: [{label: 'MNET PLUS →', url: 'https://www.mnetplus.world/'}]
+    actions: [{label: 'MNET PLUS →', url: 'https://www.mnetplus.world/'}, {label: 'VOTING GUIDE ↓', url: '#mama-app-guide', secondary: true}]
   },
   soobinBirthday2026: {
     id: 'soobin',
@@ -5325,7 +5330,7 @@ const TXT_ACTIVITY_DATA = {
     category: 'voting',
     member: 'soobin',
     startDate: '2026-08-27',
-    endDate: '2026-11-06',
+    endDate: '2026-11-16',
     status: 'ACTIVE',
     target: 'SOOBIN',
     subtitle: 'SOOBIN · BIRTHDAY SUPPORT',
@@ -5388,7 +5393,7 @@ function renderVotingDetails(activity) {
   if (activity.description) parts.push(`<p>${votingText(activity.description)}</p>`);
   if (Array.isArray(activity.rounds)) {
     parts.push('<div class="voting-section-label">VOTING ROUNDS</div><div class="voting-deadlines voting-platform-deadlines">');
-    activity.rounds.forEach(round => parts.push(`<div class="voting-deadline" style="flex-wrap:wrap;gap:6px"><span>${votingText(round.name)} · ${votingText(mamaRoundStatus(round))}</span><strong>${votingText(round.label)}</strong></div>`));
+    activity.rounds.forEach((round, idx) => parts.push(`<div class="voting-deadline" style="flex-wrap:wrap;gap:6px"><span data-mama-round-status="${idx}">${votingText(round.name)} · ${votingText(mamaRoundStatus(round))}</span><strong>${votingText(round.label)}</strong></div>`));
     parts.push('</div>');
   }
   if (Array.isArray(activity.categories)) {
@@ -5437,6 +5442,7 @@ function renderVotingCards() {
       const card = document.createElement('div');
       card.className = 'voting-card voting-card-expandable';
       card.dataset.target = activity.target || activity.member.toUpperCase();
+      card.dataset.activityId = activity.id;
       card.onclick = function(event) {
         event.stopPropagation();
         toggleVotingEvent(card);
@@ -5451,7 +5457,7 @@ function renderVotingCards() {
             <h4>${votingText(activity.name)}</h4>
             <div class="voting-card-meta">
               <span>${votingText(activity.subtitle)}</span>
-              <span class="activity-status"><span class="activity-status-dot"></span>${displayStatus}</span>
+              <span class="activity-status"><span class="activity-status-dot"></span><span class="activity-status-text">${displayStatus}</span></span>
               ${metaDate}
             </div>
           </div>
@@ -5467,7 +5473,36 @@ function updateMamaPriority() {
   if (el) el.textContent = mamaCurrentMessage();
 }
 updateMamaPriority();
-setInterval(updateMamaPriority, 60000);
+// Keep MAMA labels current while the page remains open, without replacing cards
+// (which would collapse an expanded voting card or reset a visitor's filters).
+function refreshMamaStatuses() {
+  updateMamaPriority();
+  // Refresh the visible time-plan message in place, preserving the selected tab.
+  const timePlanMessage = document.querySelector('[data-mama-time-plan] span');
+  if (timePlanMessage) timePlanMessage.innerHTML = `<strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}`;
+  const activity = TXT_ACTIVITY_DATA.mama2026;
+  const card = document.querySelector('.voting-card[data-activity-id="mama2026"]');
+  if (card) {
+    const statuses = activity.rounds.map(mamaRoundStatus);
+    const overall = statuses.some(s => s === 'ACTIVE' || s.startsWith('LIVE VOTE DAY'))
+      ? 'ACTIVE' : statuses.some(s => s === 'UPCOMING') ? 'UPCOMING' : 'ENDED';
+    const header = card.querySelector('.activity-status-text');
+    if (header) header.textContent = overall;
+    card.querySelectorAll('[data-mama-round-status]').forEach(label => {
+      const index = Number(label.dataset.mamaRoundStatus);
+      if (activity.rounds[index]) label.textContent = `${activity.rounds[index].name} · ${statuses[index]}`;
+    });
+  }
+  // Update the selected calendar detail status without overriding manual selection.
+  const details = document.getElementById('calendarDetails');
+  if (details && details.style.display === 'block' && /^mama2026-\d+$/.test(details.dataset.event || '')) {
+    const index = Number(details.dataset.event.split('-')[1]);
+    const round = activity.rounds[index];
+    const status = details.querySelector('.calendar-details-info span:last-child');
+    if (round && status) status.textContent = mamaRoundStatus(round);
+  }
+}
+setInterval(refreshMamaStatuses, 15000);
 
 // Future activities with category 'voting' can reuse this calendar renderer.
 const TXT_VOTING_ACTIVITIES = Object.values(TXT_ACTIVITY_DATA)
@@ -5920,7 +5955,7 @@ function showTimePlan(time) {
 </div>
         `;
 
-        timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class="time-plan-item"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
+        timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class="time-plan-item" data-mama-time-plan><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
         timePlan.style.display = 'block';
     }
 
@@ -5972,7 +6007,7 @@ function showTimePlan(time) {
         </div>
     `;
 
-    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\" data-mama-time-plan><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 
@@ -6010,7 +6045,7 @@ if (time === '30') {
 <path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
 <path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
 </svg>
-                <span>Take part in a current fan project</span>
+                <span>Spend extra time streaming TXT with a prepared playlist</span>
             </div>
 
             <div class="time-plan-item">
@@ -6024,7 +6059,7 @@ if (time === '30') {
         </div>
     `;
 
-    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\" data-mama-time-plan><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 
@@ -6062,7 +6097,7 @@ if (time === '60') {
 <path d="M5 21c.5 -4.5 2.5 -8 7 -10"></path>
 <path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0"></path>
 </svg>
-                <span>Take part in current fan projects</span>
+                <span>Stream more TXT songs using the prepared playlists</span>
             </div>
 
             <div class="time-plan-item">
@@ -6084,7 +6119,7 @@ if (time === '60') {
         </div>
     `;
 
-    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\"><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
+    timePlan.querySelector('.time-plan-list')?.insertAdjacentHTML('afterbegin', `<div class=\"time-plan-item\" data-mama-time-plan><span><strong>MAMA 2026:</strong> ${votingText(mamaCurrentMessage())}</span></div>`);
     timePlan.style.display = 'block';
 }
 }
@@ -6169,7 +6204,7 @@ function showCalendarEvent(event) {
         details.innerHTML = `<div class="calendar-details-title">MAMA 2026 — FANS' CHOICE</div>
           <div class="calendar-details-description">${votingText(round.name)} · ${votingText(round.label)}</div>
           <div class="calendar-details-info"><span>VOTING</span><span>TXT</span><span>${votingText(mamaRoundStatus(round))}</span></div>
-          <div class="calendar-details-actions"><a class="activity-btn" href="https://www.mnetplus.world/" target="_blank" rel="noopener noreferrer">MNET PLUS →</a></div>`;
+          <div class="calendar-details-actions"><a class="activity-btn" href="https://www.mnetplus.world/" target="_blank" rel="noopener noreferrer">MNET PLUS →</a><a class="activity-btn" href="#mama-app-guide">VOTING GUIDE ↓</a></div>`;
     } else if (event === 'breaktudo') {
 
         details.innerHTML = `
@@ -6466,6 +6501,20 @@ document.getElementById('nextMonth').addEventListener('click', () => {
    if (defaultRoundIndex >= 0) {
      showCalendarEvent(`mama2026-${defaultRoundIndex}`);
    }
+
+// Stage 11: open the MAMA mini-guide when linked from a voting card or calendar.
+document.addEventListener('click', function(event) {
+  const link = event.target.closest('a[href="#mama-app-guide"]');
+  if (!link) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const details = document.getElementById('mama-app-guide');
+  if (!details) return;
+  const card = details.closest('.resource-card');
+  if (card && details.style.display !== 'block') toggleResource(card);
+  document.getElementById('resources').scrollIntoView({behavior:'smooth',block:'start'});
+  history.replaceState(null, '', '#mama-app-guide');
+}, true);
 </script>
 <script>
 (function () {
