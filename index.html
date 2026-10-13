@@ -2786,7 +2786,7 @@ footer .container {
 </div>
 <div class="priority-item-content" id="urgentVotingContent">
 <div class="priority-vote" style="margin-bottom:10px">
-<strong>MAMA 2026 — FANS' CHOICE</strong>
+<strong>MAMA 2026 — VOTING</strong>
 <span id="mamaPriorityStatus">Round 1 · Mnet Plus + X</span>
 <span>Also vote: WORLDWIDE KCONERS' CHOICE · Mnet Plus · Oct 12 – Nov 8, 23:59 KST</span>
 <div style="margin-top:10px"><a class="activity-btn" href="https://www.mnetplus.world/" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">MNET PLUS →</a> <a class="activity-btn" href="#mama-app-guide" onclick="event.stopPropagation()">VOTING GUIDE ↓</a></div>
@@ -4016,7 +4016,7 @@ FAN PROJECTS
 
 <div class="resource-details" id="mama-app-guide">
   <div class="guide-category" style="margin-top:0">
-    <strong>MAMA 2026 — FANS' CHOICE</strong>
+    <strong>MAMA 2026 — VOTING</strong>
     <span>ROUND 1: OCT 12, 19:00 – OCT 22, 23:59 KST · ROUND 2: OCT 28, 18:00 – NOV 8, 23:59 KST</span>
     <p style="margin-top:9px"><strong>MNET PLUS VOTING</strong></p>
     <p>1. Open the Mnet Plus app and tap the MAMA AWARDS banner on Home.</p>
@@ -5333,8 +5333,8 @@ const TXT_ACTIVITY_DATA = {
   },
   mama2026: {
     id: 'mama2026',
-    name: "MAMA 2026 — FANS' CHOICE",
-    calendarLabel: 'MAMA Fans’ Choice',
+    name: "MAMA 2026 — VOTING",
+    calendarLabel: 'MAMA Voting',
     category: 'voting', member: 'txt', target: 'TXT',
     startDate: '2026-10-12', endDate: '2026-11-20',
     status: 'ACTIVE', subtitle: 'TXT · MNET PLUS + X',
@@ -6255,7 +6255,7 @@ function showCalendarEvent(event) {
     if (event.startsWith('mama2026-')) {
         const idx = Number(event.split('-')[1]);
         const round = TXT_ACTIVITY_DATA.mama2026.rounds[idx];
-        details.innerHTML = `<div class="calendar-details-title">MAMA 2026 — FANS' CHOICE</div>
+        details.innerHTML = `<div class="calendar-details-title">MAMA 2026 — VOTING</div>
           <div class="calendar-details-description">${votingText(round.name)} · ${votingText(round.label)}</div>
           <div class="calendar-details-info"><span>VOTING</span><span>TXT</span><span>${votingText(mamaRoundStatus(round))}</span></div>
           <div class="calendar-details-description" style="margin-top:10px;">Also vote: WORLDWIDE KCONERS' CHOICE · OCT 12, 19:00 – NOV 8, 23:59 KST · Mnet Plus.</div>
