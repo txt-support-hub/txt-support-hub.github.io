@@ -2832,6 +2832,82 @@ footer .container {
   }
 }
 
+
+/* ---------------- VISUAL PASS 01: SVG / ICON POLISH ---------------- */
+/* Keeps existing assets and content; only normalizes icon wrappers, glow and spacing. */
+.member-icon {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 52px;
+}
+
+.member-icon::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 244, 237, .12), transparent 64%);
+  pointer-events: none;
+}
+
+.member-svg {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  opacity: .96;
+  filter: drop-shadow(0 0 8px rgba(210, 232, 224, .10));
+  transition: transform .2s ease, opacity .2s ease, filter .2s ease;
+}
+
+.member-card:hover .member-svg {
+  opacity: 1;
+  transform: translateY(-1px) scale(1.04);
+  filter: drop-shadow(0 0 11px rgba(210, 232, 224, .18));
+}
+
+.activity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(245, 244, 237, .035);
+  border: 1px solid rgba(220, 235, 232, .08);
+}
+
+.activity-icon-svg {
+  width: 29px;
+  height: 29px;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, .10));
+}
+
+.guide-icon-svg,
+.resource-icon-svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent-2);
+  opacity: .92;
+}
+
+.guide-card:hover .guide-icon-svg,
+.resource-card:hover .resource-icon-svg {
+  opacity: 1;
+}
+
+.site-icon,
+.priority-icon,
+.quick-action-icon,
+.time-plan-icon,
+.time-plan-title-icon {
+  flex: 0 0 auto;
+  opacity: .95;
+}
+
+.activity-btn,
+.hero-btn,
+.resource-link {
+  gap: 4px;
+}
+
 </style>
 </head>
 <body>
@@ -3297,60 +3373,50 @@ FAN PROJECTS
 </div>
 <div class="member-card" onclick="selectActivityFilter('Yeonjun')">
 <div class="member-icon">
-<div class="member-icon">
 <span aria-hidden="true" class="member-svg member-yeonjun" style="
             -webkit-mask-image: url('assets/fox.svg');
             mask-image: url('assets/fox.svg');
         "></span>
-</div>
 </div>
 <h3>YEONJUN</h3>
 <p>MEMBER</p>
 </div>
 <div class="member-card" onclick="selectActivityFilter('Soobin')">
 <div class="member-icon">
-<div class="member-icon">
 <span aria-hidden="true" class="member-svg member-soobin" style="
             -webkit-mask-image: url('assets/rabbit.svg');
             mask-image: url('assets/rabbit.svg');
         "></span>
-</div>
 </div>
 <h3>SOOBIN</h3>
 <p>MEMBER</p>
 </div>
 <div class="member-card" onclick="selectActivityFilter('Beomgyu')">
 <div class="member-icon">
-<div class="member-icon">
 <span aria-hidden="true" class="member-svg member-beomgyu" style="
             -webkit-mask-image: url('assets/bear.svg');
             mask-image: url('assets/bear.svg');
         "></span>
-</div>
 </div>
 <h3>BEOMGYU</h3>
 <p>MEMBER</p>
 </div>
 <div class="member-card" onclick="selectActivityFilter('Taehyun')">
 <div class="member-icon">
-<div class="member-icon">
 <span aria-hidden="true" class="member-svg member-taehyun" style="
             -webkit-mask-image: url('assets/cat.svg');
             mask-image: url('assets/cat.svg');
         "></span>
-</div>
 </div>
 <h3>TAEHYUN</h3>
 <p>MEMBER</p>
 </div>
 <div class="member-card" onclick="selectActivityFilter('Huening Kai')">
 <div class="member-icon">
-<div class="member-icon">
 <span aria-hidden="true" class="member-svg member-huening" style="
             -webkit-mask-image: url('assets/penguin.svg');
             mask-image: url('assets/penguin.svg');
         "></span>
-</div>
 </div>
 <h3>HUENING KAI</h3>
 <p>MEMBER</p>
