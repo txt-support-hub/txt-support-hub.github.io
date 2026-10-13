@@ -2661,7 +2661,7 @@ footer .container {
     }
 }
 
-/* MAMA quick guide: scoped typography only; no global layout or background changes. */
+/* MAMA + collab readability pass: scoped, no background or global layout changes. */
 #mama-app-guide .guide-category { padding: 10px 11px; }
 #mama-app-guide .guide-category > strong { font-size: 9px; line-height: 1.4; letter-spacing: .25px; }
 #mama-app-guide .guide-category > span { display: block; font-size: 7.5px; line-height: 1.55; }
@@ -2671,6 +2671,166 @@ footer .container {
 #mama-app-guide .guide-category .guide-category { margin-top: 12px; padding: 9px 10px; }
 .mama-combined-category { margin-top: 12px; }
 .mama-combined-category .voting-deadlines { margin-top: 8px; }
+
+.mama-support-list {
+  display: grid;
+  gap: 6px;
+  margin: 11px 0 13px;
+}
+
+.mama-support-item,
+.mama-guide-block,
+.collab-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: rgba(6, 21, 22, .18);
+}
+
+.mama-support-item {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 9px;
+  align-items: start;
+  padding: 8px 9px;
+}
+
+.mama-support-item strong,
+.mama-guide-block strong,
+.collab-card strong {
+  color: var(--text);
+}
+
+.mama-support-item strong {
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+.mama-support-item span {
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.mama-combined-category {
+  padding: 12px 0 0;
+}
+
+.mama-combined-category h5 {
+  margin-bottom: 5px;
+}
+
+.mama-guide-card {
+  padding: 12px 12px 13px !important;
+}
+
+.mama-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 11px;
+}
+
+.mama-guide-block {
+  padding: 10px;
+}
+
+.mama-guide-block > strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 8.5px;
+  letter-spacing: .3px;
+}
+
+.mama-guide-block > span {
+  display: block;
+  color: var(--muted);
+  font-size: 7.5px;
+  line-height: 1.45;
+}
+
+.mama-steps {
+  margin: 7px 0 0 15px;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.mama-steps li {
+  margin: 2px 0;
+}
+
+.mama-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0;
+}
+
+.mama-hashtags code {
+  padding: 4px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: var(--accent-soft);
+  font-family: inherit;
+  font-size: 7.5px;
+  font-weight: 800;
+}
+
+.mama-kconers-guide {
+  margin-top: 8px;
+}
+
+.collab-card {
+  padding: 10px;
+}
+
+.collab-card-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 9px;
+}
+
+.collab-meta {
+  display: grid;
+  gap: 5px;
+  margin: 8px 0 0;
+}
+
+.collab-meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.collab-meta b,
+.priority-vote b {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.collab-proof-list {
+  margin: 9px 0 0 14px;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.collab-proof-list li {
+  margin: 2px 0;
+}
+
+.collab-actions {
+  margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+  .mama-guide-grid,
+  .mama-support-item {
+    grid-template-columns: 1fr;
+  }
+}
 
 </style>
 </head>
@@ -2861,8 +3021,9 @@ FAN PROJECTS
 <div class="priority-item-content" id="urgentProjectsContent">
 <div class="priority-vote">
 <strong>MAMA ROUND 1 — VOTING COLLABORATION</strong>
-<span>TXT VOTING STAR · TXT, TREASURE, LNGSHOT, aespa, BABYMONSTER, Hearts2Hearts</span>
-<span>Fan-organized goal: 1,000 votes per day. Upload proofs to the organizers' Drive: hide the bottom Voting ID/code, add timestamps or watermark if possible.</span>
+<span><b>Partners:</b> TXT VOTING STAR · TXT, TREASURE, LNGSHOT, aespa, BABYMONSTER, Hearts2Hearts</span>
+<span><b>Goal:</b> 1,000 votes/day</span>
+<span><b>Proofs:</b> hide the bottom Voting ID/code · add timestamp/watermark · add total votes to file name when needed</span>
 <a class="activity-btn" href="https://drive.google.com/drive/folders/1ghiUkySf8JNJ5YQiHEoF0mrPsH6J9eLA" onclick="event.stopPropagation()" target="_blank" rel="noopener noreferrer">COLLAB DRIVE →</a>
 </div>
 </div>
@@ -3498,9 +3659,21 @@ FAN PROJECTS
         </div>
 <div class="fanproject-list">
 <div class="fanproject-item">
-<p class="fanproject-item-description">
-                    MAMA ROUND 1 — TXT VOTING STAR collaboration with TREASURE, LNGSHOT, aespa, BABYMONSTER and Hearts2Hearts. Fan-organized goal: 1,000 votes/day. Submit voting proofs: hide the bottom Voting ID/code, add timestamps or watermark if possible, and include total votes in the file name when one image has multiple proofs. Watch vote-count updates; surplus votes are not guaranteed to be repaid. <a class="activity-btn" href="https://drive.google.com/drive/folders/1ghiUkySf8JNJ5YQiHEoF0mrPsH6J9eLA" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">COLLAB DRIVE →</a>
-                </p>
+<div class="collab-card">
+<strong class="collab-card-title">MAMA ROUND 1 — TXT VOTING STAR COLLAB</strong>
+<div class="collab-meta">
+<span><b>Partners:</b> TXT, TREASURE, LNGSHOT, aespa, BABYMONSTER, Hearts2Hearts</span>
+<span><b>Daily goal:</b> 1,000 votes/day</span>
+<span><b>Proofs:</b> upload to the organizers’ Drive after voting.</span>
+</div>
+<ul class="collab-proof-list">
+<li>Hide the bottom Voting ID/code.</li>
+<li>Add timestamp or watermark if possible.</li>
+<li>If one image has multiple proofs, include total votes in the file name.</li>
+<li>Watch vote-count updates; surplus votes are not guaranteed to be repaid.</li>
+</ul>
+<div class="collab-actions"><a class="activity-btn" href="https://drive.google.com/drive/folders/1ghiUkySf8JNJ5YQiHEoF0mrPsH6J9eLA" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">COLLAB DRIVE →</a></div>
+</div>
 </div>
 </div>
 </div>
@@ -4015,25 +4188,34 @@ FAN PROJECTS
 </div>
 
 <div class="resource-details" id="mama-app-guide">
-  <div class="guide-category" style="margin-top:0">
+  <div class="guide-category mama-guide-card" style="margin-top:0">
     <strong>MAMA 2026 — VOTING</strong>
-    <span>ROUND 1: OCT 12, 19:00 – OCT 22, 23:59 KST · ROUND 2: OCT 28, 18:00 – NOV 8, 23:59 KST</span>
+    <span>Round 1: Oct 12, 19:00 – Oct 22, 23:59 KST · Round 2: Oct 28, 18:00 – Nov 8, 23:59 KST</span>
 
-    <p style="margin-top:9px"><strong>MNET PLUS VOTING</strong></p>
-    <p>1. Open Mnet Plus → MAMA AWARDS banner.</p>
-    <p>2. Vote for TXT in FANS' CHOICE MALE. Select up to 3 teams if the app asks.</p>
-    <p>3. Submit the vote and check the completion screen.</p>
+    <div class="mama-guide-grid">
+      <div class="mama-guide-block">
+        <strong>MNET PLUS — FANS' CHOICE</strong>
+        <span>Main daily vote for TXT in Fans' Choice Male.</span>
+        <ol class="mama-steps">
+          <li>Open Mnet Plus → MAMA AWARDS banner.</li>
+          <li>Vote for TXT; select up to 3 teams if the app asks.</li>
+          <li>Submit and check the completion screen.</li>
+        </ol>
+      </div>
 
-    <p style="margin-top:9px"><strong>X HASHTAG SUPPORT</strong></p>
-    <p>Post or repost from a public X account to support TXT's MAMA visibility/SNS voting data.</p>
-    <p>Use both hashtags: <strong>#2026MAMAVOTE</strong> and <strong>#tomorrowxtogether</strong>.</p>
-    <p>Do not add hashtags for multiple artists in one support post.</p>
-    <p><button class="activity-btn" type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('#2026MAMAVOTE #tomorrowxtogether').then(() => { this.textContent = 'COPIED ✓'; }).catch(() => { this.textContent = 'SELECT HASHTAGS ABOVE'; })">COPY X HASHTAGS</button></p>
+      <div class="mama-guide-block">
+        <strong>X HASHTAG SUPPORT</strong>
+        <span>Not a separate app vote. Use public posts/reposts to support TXT with official hashtags.</span>
+        <div class="mama-hashtags"><code>#2026MAMAVOTE</code><code>#tomorrowxtogether</code></div>
+        <span>Do not mix hashtags for multiple artists in one support post.</span>
+        <div class="activity-actions"><button class="activity-btn" type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('#2026MAMAVOTE #tomorrowxtogether').then(() => { this.textContent = 'COPIED ✓'; }).catch(() => { this.textContent = 'SELECT HASHTAGS ABOVE'; })">COPY X HASHTAGS</button></div>
+      </div>
+    </div>
 
-    <div class="guide-category">
+    <div class="mama-guide-block mama-kconers-guide">
       <strong>WORLDWIDE KCONERS' CHOICE — MNET PLUS</strong>
-      <span>OCT 12, 19:00 – NOV 11, 23:59 KST</span>
-      <p>Vote for TXT's KCON 2026 performance. Support accounts report: views count 15% and Mnet Plus online vote counts 15%.</p>
+      <span>Oct 12, 19:00 – Nov 11, 23:59 KST</span>
+      <p>Vote for TXT's KCON 2026 performance. Support accounts report: performance views count 15% and Mnet Plus online vote counts 15%.</p>
     </div>
 
     <div class="activity-actions"><a class="activity-btn" href="https://www.mnetplus.world/" target="_blank" rel="noopener noreferrer">MNET PLUS →</a><a class="activity-btn" href="https://x.com/MnetMAMA" target="_blank" rel="noopener noreferrer">OFFICIAL MAMA X →</a></div>
@@ -5342,7 +5524,7 @@ const TXT_ACTIVITY_DATA = {
     category: 'voting', member: 'txt', target: 'TXT',
     startDate: '2026-10-12', endDate: '2026-11-20',
     status: 'ACTIVE', subtitle: 'TXT · MNET PLUS + X HASHTAGS',
-    description: 'Vote for TXT in Fans’ Choice on Mnet Plus, support TXT with the official X hashtags, and vote in WORLDWIDE KCONERS’ CHOICE on Mnet Plus. All times KST.',
+    description: 'Three MAMA support tracks are open: Fans’ Choice on Mnet Plus, X hashtag support, and WORLDWIDE KCONERS’ CHOICE on Mnet Plus. All times KST.',
     rounds: [
       {name: 'ROUND 1', start: '2026-10-12T19:00:00+09:00', end: '2026-10-22T23:59:59+09:00', label: 'OCT 12, 19:00 – OCT 22, 23:59 KST'},
       {name: 'ROUND 2', start: '2026-10-28T18:00:00+09:00', end: '2026-11-08T23:59:59+09:00', label: 'OCT 28, 18:00 – NOV 8, 23:59 KST'},
@@ -5358,7 +5540,7 @@ const TXT_ACTIVITY_DATA = {
     category: 'voting', member: 'txt', target: 'TXT',
     startDate: '2026-10-12', endDate: '2026-11-11',
     status: 'ACTIVE', subtitle: 'TXT · MNET PLUS',
-    description: 'Vote for TXT in WORLDWIDE KCONERS’ CHOICE, a separate category celebrating KCON 2026 stages. Voting runs Oct 12, 19:00 – Nov 11, 23:59 KST.',
+    description: 'Vote for TXT in WORLDWIDE KCONERS’ CHOICE, a separate Mnet Plus category for KCON 2026 stages. Voting runs Oct 12, 19:00 – Nov 11, 23:59 KST.',
     actions: [{label:'MNET PLUS →',url:'https://www.mnetplus.world/'},{label:'VOTING GUIDE ↓',url:'#mama-app-guide',secondary:true}]
   },
   soobinBirthday2026: {
@@ -5429,6 +5611,13 @@ function mamaCurrentMessage() {
 function renderVotingDetails(activity) {
   const parts = ['<div class="voting-card-content">'];
   if (activity.description) parts.push(`<p>${votingText(activity.description)}</p>`);
+  if (activity.id === 'mama2026') {
+    parts.push(`<div class="mama-support-list">
+      <div class="mama-support-item"><strong>FANS' CHOICE</strong><span>Mnet Plus daily vote for TXT in the male category.</span></div>
+      <div class="mama-support-item"><strong>X HASHTAGS</strong><span>Public posts/reposts with #2026MAMAVOTE and #tomorrowxtogether to support TXT visibility.</span></div>
+      <div class="mama-support-item"><strong>KCONERS' CHOICE</strong><span>Separate Mnet Plus vote for TXT's KCON 2026 performance.</span></div>
+    </div>`);
+  }
   if (Array.isArray(activity.rounds)) {
     parts.push('<div class="voting-section-label">VOTING ROUNDS</div><div class="voting-deadlines voting-platform-deadlines">');
     activity.rounds.forEach((round, idx) => parts.push(`<div class="voting-deadline" style="flex-wrap:wrap;gap:6px"><span data-mama-round-status="${idx}">${votingText(round.name)} · ${votingText(mamaRoundStatus(round))}</span><strong>${votingText(round.label)}</strong></div>`));
