@@ -2648,7 +2648,20 @@ footer .container {
 .footer-contact-links a:hover {
     opacity: 0.65;
 }
+.footer-note {
+    max-width: 340px;
+    color: var(--muted);
+    font-size: 9px;
+    line-height: 1.55;
+    text-align: right;
+}
 
+.footer-note strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text);
+    font-size: 12px;
+}
 @media (max-width: 600px) {
     footer .container {
         flex-direction: column;
@@ -2658,6 +2671,11 @@ footer .container {
 
     .footer-contact {
         gap: 8px;
+    }
+
+    .footer-note {
+        max-width: 520px;
+        text-align: center;
     }
 }
 
@@ -4376,6 +4394,49 @@ FAN PROJECTS
   </div>
 </div></div>
 </div>
+   <!-- CREDITS & DISCLAIMER -->
+<div class="resource-card resource-expandable">
+  <div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
+    <div class="resource-icon">
+      <svg class="resource-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l8 4v5c0 5 -3.5 8.5 -8 9c-4.5 -.5 -8 -4 -8 -9v-5l8 -4z"></path>
+        <path d="M9 12l2 2l4 -4"></path>
+      </svg>
+    </div>
+    <div>
+      <h3>CREDITS &amp; DISCLAIMER</h3>
+      <p>
+        Permissions, credits and independence note.
+      </p>
+    </div>
+    <div class="resource-arrow">
+      ▸
+    </div>
+  </div>
+
+  <div class="resource-details">
+    <div class="guide-category" style="margin-top:0">
+      <strong>PERMISSION RECEIVED</strong>
+      <span>
+        Some resources from @txtvotingcrew and @yeondreamfm are used with permission.
+      </span>
+    </div>
+
+    <div class="guide-category">
+      <strong>INDEPENDENT FAN PROJECT</strong>
+      <span>
+        TXT Support Hub is an independent fan-made project. These fanbases are not affiliated with, involved in, responsible for, or officially endorsing this website.
+      </span>
+    </div>
+
+    <div class="guide-category">
+      <strong>OTHER SUPPORT ACCOUNTS</strong>
+      <span>
+        Other support accounts may be linked or referenced as helpful resources for MOAs, but unless clearly stated, they are not affiliated with TXT Support Hub. Please continue supporting the original support accounts directly.
+      </span>
+    </div>
+  </div>
+</div>
 <!-- STREAMING -->
 <div class="resource-card resource-expandable">
 <div class="resource-main" onclick="toggleResource(this.closest('.resource-card'))">
@@ -5641,7 +5702,12 @@ FAN PROJECTS
       </div>
     </div>
 
-    <span>Built by MOA for MOA.</span>
+    <div class="footer-note">
+  <strong>Built by MOA for MOA.</strong>
+  <span>
+    Independent fan-made project. Some resources are used with permission; referenced fanbases are not affiliated with or responsible for TXT Support Hub.
+  </span>
+</div>
   </div>
 </footer>
 <script>
